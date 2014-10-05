@@ -1,0 +1,7 @@
+/target
+/bin
+/work
+.settings
+.classpath
+.project
+.idea
