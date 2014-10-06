@@ -13,6 +13,7 @@ import com.uwyn.jhighlight.JHighlightVersion;
 import com.uwyn.jhighlight.highlighter.ExplicitStateHighlighter;
 import com.uwyn.jhighlight.tools.ExceptionUtils;
 import com.uwyn.jhighlight.tools.StringUtils;
+
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
@@ -161,7 +162,7 @@ public abstract class XhtmlRenderer implements Renderer
 	throws IOException
 	{
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		highlight(name, new StringBufferInputStream(in), out, encoding, fragment);
+		highlight(name, new ByteArrayInputStream(in.getBytes(encoding)), out, encoding, fragment);
 		return out.toString(encoding);
 	}
 		
