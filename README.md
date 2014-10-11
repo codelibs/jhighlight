@@ -10,10 +10,13 @@ This project is forked from https://jhighlight.dev.java.net/ to fix several bugs
 
 ## Reference
 
+The original jhighlight handles multi-byte characters as garbled one. To solve this problem, replace with CodeLibs jhighlight.
+
 ### Tika
 
-The original jhighlight handles multi-byte characters as garbled one. To solve this problem, replace with CodeLibs jhighlight.
-In your pom.xml, change to:
+Tike uses jhighlight to parse source code files, such as .java.
+If a source code file has a multi-byte chracter, it becomes a garbled one.
+To avoid this problem, change your pom.xml to:
 
     <dependency>
       <groupId>org.apache.tika</groupId>
