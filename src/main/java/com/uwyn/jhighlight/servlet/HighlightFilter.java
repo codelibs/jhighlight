@@ -1,9 +1,10 @@
 /*
- * Copyright 2004-2006 Geert Bevin <gbevin[remove] at uwyn dot com>
+ * Copyright 2004-2006 Geert Bevin <gbevin[remove] at uwyn dot com>; and
+ * Frederic Daoud <xf2697[remove] at fastmail dot fm>
  * Distributed under the terms of either:
  * - the common development and distribution license (CDDL), v1.0; or
  * - the GNU Lesser General Public License, v2.1 or later
- * $Id: HighlightFilter.java 3108 2006-03-13 18:03:00Z gbevin $
+ * $Id: HighlightFilter.java 3183 2006-04-13 21:06:25Z gbevin $
  */
 package com.uwyn.jhighlight.servlet;
 
@@ -47,7 +48,7 @@ import javax.servlet.http.HttpServletResponseWrapper;
  * resulting HTML will be served.
  *
  * @author Geert Bevin (gbevin[remove] at uwyn dot com)
- * @version $Revision: 3108 $
+ * @version $Revision: 3183 $
  * @since 1.0
  */
 public final class HighlightFilter implements Filter
@@ -99,8 +100,10 @@ public final class HighlightFilter implements Filter
 						{
 							encoding = "UTF-8";
 						}
-						
-						renderer.highlight(http_request.getServletPath().substring(1), is, os, encoding, false);
+
+						String name = http_request.getServletPath().substring(1);
+						name = name.substring(0, name.length()-1);
+						renderer.highlight(name, is, os, encoding, false);						
 						
 						String highlighted = os.toString("ISO-8859-1");
 						

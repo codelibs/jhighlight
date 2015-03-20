@@ -13,7 +13,6 @@ import com.uwyn.jhighlight.JHighlightVersion;
 import com.uwyn.jhighlight.highlighter.ExplicitStateHighlighter;
 import com.uwyn.jhighlight.tools.ExceptionUtils;
 import com.uwyn.jhighlight.tools.StringUtils;
-
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;

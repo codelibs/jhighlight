@@ -3,7 +3,7 @@
  * Distributed under the terms of either:
  * - the common development and distribution license (CDDL), v1.0; or
  * - the GNU Lesser General Public License, v2.1 or later
- * $Id: JHighlight.java 3108 2006-03-13 18:03:00Z gbevin $
+ * $Id: JHighlight.java 3429 2006-08-02 02:38:39Z gbevin $
  */
 package com.uwyn.jhighlight;
 
@@ -25,6 +25,8 @@ import java.util.regex.Pattern;
  * <code>.xml</code> and <code>.lzx</code>.
  * <p>Execute the highlighting with the following syntax:
  * <pre>java com.uwyn.jhighlight.JHighlight [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...</pre>
+ * <p>or
+ * <pre>java -jar jhighlight.jar [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...</pre>
  * <table border="0">
  * <tr>
  * <td><code>--verbose</code></td>
@@ -47,7 +49,7 @@ import java.util.regex.Pattern;
  * supported and will be clearly highlighted.
  *
  * @author Geert Bevin (gbevin[remove] at uwyn dot com)
- * @version $Revision: 3108 $
+ * @version $Revision: 3429 $
  * @since 1.0
  */
 public class JHighlight
@@ -122,7 +124,10 @@ public class JHighlight
 		
 		if (!valid_arguments)
 		{
-			System.err.println("Usage : java " + JHighlight.class.getName() + " [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...");
+			System.err.println("Usage :");
+			System.err.println("  java " + JHighlight.class.getName() + " [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...");
+			System.err.println("or");
+			System.err.println("  java -jar jhighlight-" + JHighlightVersion.getVersion() + ".jar [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...");
 			System.err.println("Generates highlighted XHTML files from all Java and XML source files");
 			System.err.println("in the specified directories.");
 			System.err.println("  --verbose  Output messages about what the parser is doing");
