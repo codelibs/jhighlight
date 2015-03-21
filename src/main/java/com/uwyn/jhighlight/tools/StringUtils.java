@@ -7,7 +7,8 @@
  */
 package com.uwyn.jhighlight.tools;
 
-import com.uwyn.jhighlight.pcj.map.CharKeyOpenHashMap;
+import com.uwyn.jhighlight.fastutil.chars.Char2ObjectOpenHashMap;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Pattern;
@@ -22,7 +23,7 @@ import java.util.regex.Pattern;
  */
 public abstract class StringUtils
 {
-	private static final CharKeyOpenHashMap	mHtmlEncodeMap = new CharKeyOpenHashMap();
+    private static final Char2ObjectOpenHashMap<String> mHtmlEncodeMap = new Char2ObjectOpenHashMap<String>();
 	
 	static
 	{
@@ -324,7 +325,7 @@ public abstract class StringUtils
 	 *
 	 * @since 1.0
 	 */
-	private static String encode(String source, CharKeyOpenHashMap encodingTable)
+	private static String encode(String source, Char2ObjectOpenHashMap<String> encodingTable)
 	{
 		if (null == source)
 		{
