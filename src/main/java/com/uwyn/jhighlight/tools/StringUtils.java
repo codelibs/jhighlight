@@ -7,7 +7,7 @@
  */
 package com.uwyn.jhighlight.tools;
 
-import com.uwyn.jhighlight.fastutil.chars.Char2ObjectOpenHashMap;
+import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
 
 import java.util.ArrayList;
 import java.util.Iterator;
