@@ -7,11 +7,11 @@
  */
 package com.uwyn.jhighlight.tools;
 
-import it.unimi.dsi.fastutil.chars.Char2ObjectOpenHashMap;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.regex.Pattern;
+
+import com.uwyn.jhighlight.fastutil.chars.Char2ObjectOpenHashMap;
 
 /**
  * General purpose class containing common <code>String</code> manipulation
