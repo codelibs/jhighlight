@@ -32,6 +32,6 @@ To avoid this problem, change your pom.xml to:
     <dependency>
       <groupId>org.codelibs</groupId>
       <artifactId>jhighlight</artifactId>
-      <version>1.0.1</version>
+      <version>1.0.2</version>
     </dependency>
 
