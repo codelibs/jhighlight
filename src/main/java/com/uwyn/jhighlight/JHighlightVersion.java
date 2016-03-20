@@ -7,11 +7,12 @@
  */
 package com.uwyn.jhighlight;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
+
+import org.apache.commons.io.output.ByteArrayOutputStream;
 
 /**
  * Provides acces to the version number of this JHighlight release.

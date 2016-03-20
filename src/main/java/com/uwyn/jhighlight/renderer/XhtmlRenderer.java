@@ -7,18 +7,30 @@
  */
 package com.uwyn.jhighlight.renderer;
 
-import java.io.*;
-
-import com.uwyn.jhighlight.JHighlightVersion;
-import com.uwyn.jhighlight.highlighter.ExplicitStateHighlighter;
-import com.uwyn.jhighlight.tools.ExceptionUtils;
-import com.uwyn.jhighlight.tools.StringUtils;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Reader;
+import java.io.StringReader;
+import java.io.Writer;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Properties;
 import java.util.logging.Logger;
+
+import org.apache.commons.io.output.ByteArrayOutputStream;
+
+import com.uwyn.jhighlight.JHighlightVersion;
+import com.uwyn.jhighlight.highlighter.ExplicitStateHighlighter;
+import com.uwyn.jhighlight.tools.ExceptionUtils;
+import com.uwyn.jhighlight.tools.StringUtils;
 
 /**
  * Provides an abstract base class to perform source code to XHTML syntax
