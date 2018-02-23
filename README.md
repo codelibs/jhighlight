@@ -14,7 +14,7 @@ The original jhighlight handles multi-byte characters as garbled one. To solve t
 
 ### Tika
 
-Tike uses jhighlight to parse source code files, such as .java.
+Tika uses jhighlight to parse source code files, such as .java.
 If a source code file has a multi-byte chracter, it becomes a garbled one.
 To avoid this problem, change your pom.xml to:
 
