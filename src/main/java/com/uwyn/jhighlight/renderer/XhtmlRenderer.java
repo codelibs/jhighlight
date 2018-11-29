@@ -170,11 +170,12 @@ public abstract class XhtmlRenderer implements Renderer
 	 * @since 1.0
 	 */
 	public String highlight(String name, String in, String encoding, boolean fragment)
-	throws IOException
-	{
-		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		highlight(name, new ByteArrayInputStream(in.getBytes(encoding)), out, encoding, fragment);
-		return out.toString(encoding);
+	throws IOException {
+		try (final ByteArrayOutputStream out = new ByteArrayOutputStream())
+		{
+			highlight(name, new ByteArrayInputStream(in.getBytes(encoding)), out, encoding, fragment);
+			return out.toString(encoding);
+		}
 	}
 		
 	/**
