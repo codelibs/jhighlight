@@ -94,23 +94,25 @@ public final class HighlightFilter implements Filter
 					if (HttpServletResponse.SC_OK == response_wrapper.getStatus())
 					{
 						InputStream is = new ByteArrayInputStream(response_wrapper.getWrappedOutputStream().toByteArray());
-						ByteArrayOutputStream os = new ByteArrayOutputStream();
-						
-						String encoding = request.getCharacterEncoding();
-						if (null == encoding)
+						try (final ByteArrayOutputStream os = new ByteArrayOutputStream())
 						{
-							encoding = "UTF-8";
-						}
+							String encoding = request.getCharacterEncoding();
 
-						String name = http_request.getServletPath().substring(1);
-						name = name.substring(0, name.length()-1);
-						renderer.highlight(name, is, os, encoding, false);						
-						
-						String highlighted = os.toString("ISO-8859-1");
-						
-						response.setContentType("text/html");
-						response.setContentLength(highlighted.length());
-						out.write(highlighted.getBytes("ISO-8859-1"));
+							if (null == encoding)
+							{
+								encoding = "UTF-8";
+							}
+
+							String name = http_request.getServletPath().substring(1);
+							name = name.substring(0, name.length() - 1);
+							renderer.highlight(name, is, os, encoding, false);
+
+							String highlighted = os.toString("ISO-8859-1");
+
+							response.setContentType("text/html");
+							response.setContentLength(highlighted.length());
+							out.write(highlighted.getBytes("ISO-8859-1"));
+						}
 					}
 					else
 					{
