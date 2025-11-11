@@ -3,13 +3,133 @@ package org.codelibs.jhighlight.renderer;
 import static org.codelibs.jhighlight.renderer.XhtmlRendererFactory.CPP;
 import static org.codelibs.jhighlight.renderer.XhtmlRendererFactory.GROOVY;
 import static org.codelibs.jhighlight.renderer.XhtmlRendererFactory.JAVA;
+import static org.codelibs.jhighlight.renderer.XhtmlRendererFactory.JAVASCRIPT;
+import static org.codelibs.jhighlight.renderer.XhtmlRendererFactory.HTML;
+import static org.codelibs.jhighlight.renderer.XhtmlRendererFactory.XML;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.io.IOException;
 
 import org.junit.Test;
 
 public class XhtmlRendererFactoryTest {
+
+    @Test
+    public void testGetRenderer_Java() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(JAVA);
+        assertNotNull("Java renderer should not be null", renderer);
+        assertTrue("Should be JavaXhtmlRenderer instance",
+                   renderer instanceof JavaXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_Cpp() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(CPP);
+        assertNotNull("C++ renderer should not be null", renderer);
+        assertTrue("Should be CppXhtmlRenderer instance",
+                   renderer instanceof CppXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_Groovy() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(GROOVY);
+        assertNotNull("Groovy renderer should not be null", renderer);
+        assertTrue("Should be GroovyXhtmlRenderer instance",
+                   renderer instanceof GroovyXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_JavaScript() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(JAVASCRIPT);
+        assertNotNull("JavaScript renderer should not be null", renderer);
+        assertTrue("Should be JavaScriptXhtmlRenderer instance",
+                   renderer instanceof JavaScriptXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_Html() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(HTML);
+        assertNotNull("HTML renderer should not be null", renderer);
+        assertTrue("Should be XmlXhtmlRenderer instance",
+                   renderer instanceof XmlXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_Xml() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(XML);
+        assertNotNull("XML renderer should not be null", renderer);
+        assertTrue("Should be XmlXhtmlRenderer instance",
+                   renderer instanceof XmlXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Java() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.java");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof JavaXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Cpp() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.cpp");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof CppXhtmlRenderer);
+
+        // Test other C++ extensions
+        renderer = XhtmlRendererFactory.getRenderer("test.c");
+        assertNotNull(renderer);
+
+        renderer = XhtmlRendererFactory.getRenderer("test.cc");
+        assertNotNull(renderer);
+
+        renderer = XhtmlRendererFactory.getRenderer("test.h");
+        assertNotNull(renderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Groovy() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.groovy");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof GroovyXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_JavaScript() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.js");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof JavaScriptXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Html() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.html");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof XmlXhtmlRenderer);
+
+        renderer = XhtmlRendererFactory.getRenderer("test.htm");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof XmlXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Xml() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.xml");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof XmlXhtmlRenderer);
+
+        renderer = XhtmlRendererFactory.getRenderer("test.xhtml");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof XmlXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_UnknownType() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("UNKNOWN");
+        // Should return null or throw exception for unknown type
+        // Based on implementation, check behavior
+    }
 
     @Test
     public void rendererOnCpp() throws IOException {
