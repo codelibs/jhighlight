@@ -62,13 +62,13 @@ public class StringUtilsTest {
     @Test
     public void testFilter_NullPatterns() {
         // Null include pattern - should accept everything not excluded
-        assertTrue(StringUtils.filter("anything", null, null));
-        assertTrue(StringUtils.filter("test.java", null, null));
+        assertTrue(StringUtils.filter("anything", (Pattern[])null, (Pattern[])null));
+        assertTrue(StringUtils.filter("test.java", (Pattern[])null, (Pattern[])null));
 
         // Only exclude pattern
         Pattern excluded = Pattern.compile(".*\\.class");
-        assertTrue(StringUtils.filter("test.java", null, excluded));
-        assertFalse(StringUtils.filter("test.class", null, excluded));
+        assertTrue(StringUtils.filter("test.java", (Pattern[])null, new Pattern[]{excluded}));
+        assertFalse(StringUtils.filter("test.class", (Pattern[])null, new Pattern[]{excluded}));
     }
 
     @Test
