@@ -52,19 +52,37 @@ public abstract class XhtmlRendererFactory
 	 * the type that's provided.
 	 *
 	 * @param type The type of renderer, look at the static variables of this
-	 * class to see which ones are supported.
+	 * class to see which ones are supported. Can also be a filename with extension.
 	 * @return an instance of the <code>XhtmlRenderer</code> that corresponds to the type; or
 	 * <p><code>null</code> if the type wasn't known
 	 * @since 1.0
 	 */
 	public static Renderer getRenderer(String type)
 	{
-		String classname = (String)RENDERERS_CLASSNAMES.get(type.toLowerCase());
+		String lookupType = type.toLowerCase();
+
+		// If the type contains a dot, treat it as a filename and extract the extension
+		if (lookupType.contains("."))
+		{
+			int lastDot = lookupType.lastIndexOf('.');
+			if (lastDot < lookupType.length() - 1)
+			{
+				lookupType = lookupType.substring(lastDot + 1);
+			}
+		}
+
+		// Handle "htm" as "html"
+		if ("htm".equals(lookupType))
+		{
+			lookupType = "html";
+		}
+
+		String classname = (String)RENDERERS_CLASSNAMES.get(lookupType);
 		if (null == classname)
 		{
 			return null;
 		}
-		
+
 		try
 		{
 			Class klass = Class.forName(classname);
