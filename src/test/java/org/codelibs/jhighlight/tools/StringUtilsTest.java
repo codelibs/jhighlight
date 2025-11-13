@@ -138,10 +138,17 @@ public class StringUtilsTest {
 
     @Test
     public void testSplit_CaseSensitive() {
-        ArrayList result = StringUtils.split("oneANDtwoAndthree", "and", true);
-        assertEquals(2, result.size());
-        assertEquals("oneANDtwo", result.get(0));
-        assertEquals("three", result.get(1));
+        // Test case-sensitive splitting - "and" should only match exact lowercase "and"
+        ArrayList result = StringUtils.split("oneandtwoandthree", "and", true);
+        assertEquals(3, result.size());
+        assertEquals("one", result.get(0));
+        assertEquals("two", result.get(1));
+        assertEquals("three", result.get(2));
+
+        // Test that case-sensitive doesn't match different case
+        result = StringUtils.split("oneANDtwoAndthree", "and", true);
+        assertEquals(1, result.size());
+        assertEquals("oneANDtwoAndthree", result.get(0));
     }
 
     @Test
