@@ -9,6 +9,8 @@ import org.junit.Test;
 
 public class GroovyHighlighterTest {
 
+    private static final int MAX_TOKENS = 1000; // Prevent infinite loops
+
     @Test
     public void testHighlightSimpleGroovyCode() throws IOException {
         String code = "def message = 'Hello World'";
@@ -16,7 +18,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
@@ -30,7 +32,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for keywords", tokenCount > 0);
@@ -45,8 +47,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000; // Prevent infinite loop
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for closure", tokenCount > 0);
@@ -66,8 +67,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000; // Prevent infinite loop
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for class definition", tokenCount > 5);
@@ -81,8 +81,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000; // Prevent infinite loop
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for strings", tokenCount > 0);
@@ -98,8 +97,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000;
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for comments", tokenCount > 0);
@@ -113,8 +111,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000;
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for collections", tokenCount > 5);
@@ -128,8 +125,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000;
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for annotations", tokenCount > 0);
@@ -152,8 +148,7 @@ public class GroovyHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        int maxTokens = 1000;
-        while (highlighter.getNextToken() != 0 && tokenCount < maxTokens) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }

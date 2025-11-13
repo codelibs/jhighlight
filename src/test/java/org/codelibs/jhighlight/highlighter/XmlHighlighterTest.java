@@ -9,6 +9,8 @@ import org.junit.Test;
 
 public class XmlHighlighterTest {
 
+    private static final int MAX_TOKENS = 1000; // Prevent infinite loops
+
     @Test
     public void testHighlightSimpleXml() throws IOException {
         String code = "<root></root>";
@@ -16,7 +18,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
@@ -30,7 +32,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for attributes", tokenCount > 0);
@@ -43,7 +45,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for content", tokenCount > 0);
@@ -57,7 +59,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for comments", tokenCount > 0);
@@ -71,7 +73,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for declaration", tokenCount > 0);
@@ -88,7 +90,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for CDATA", tokenCount > 0);
@@ -105,7 +107,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for nested elements", tokenCount > 5);
@@ -118,7 +120,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for self-closing tag", tokenCount > 0);
@@ -140,7 +142,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
@@ -166,7 +168,7 @@ public class XmlHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }

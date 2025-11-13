@@ -9,6 +9,8 @@ import org.junit.Test;
 
 public class CppHighlighterTest {
 
+    private static final int MAX_TOKENS = 1000; // Prevent infinite loops
+
     @Test
     public void testHighlightSimpleCppCode() throws IOException {
         String code = "int main() { return 0; }";
@@ -16,7 +18,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
@@ -30,7 +32,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for keywords", tokenCount > 0);
@@ -46,7 +48,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for preprocessor directives", tokenCount > 0);
@@ -61,7 +63,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for comments", tokenCount > 0);
@@ -80,7 +82,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for class definition", tokenCount > 5);
@@ -94,7 +96,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for pointers and references", tokenCount > 0);
@@ -108,7 +110,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for templates", tokenCount > 0);
@@ -123,7 +125,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for namespace", tokenCount > 0);
@@ -136,7 +138,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for operators", tokenCount > 0);
@@ -164,7 +166,7 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }

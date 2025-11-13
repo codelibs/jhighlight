@@ -9,6 +9,8 @@ import org.junit.Test;
 
 public class JavaScriptHighlighterTest {
 
+    private static final int MAX_TOKENS = 1000; // Prevent infinite loops
+
     @Test
     public void testHighlightSimpleJavaScript() throws IOException {
         String code = "var x = 5;";
@@ -16,11 +18,12 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have multiple tokens", tokenCount > 0);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -30,10 +33,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for keywords", tokenCount > 0);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -45,10 +49,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for function", tokenCount > 5);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -61,10 +66,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for comments", tokenCount > 0);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -80,10 +86,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for object literal", tokenCount > 10);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -93,10 +100,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for array", tokenCount > 5);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -107,10 +115,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for strings", tokenCount > 0);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -120,10 +129,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
         }
         assertTrue("Should have tokens for numbers", tokenCount > 0);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 
     @Test
@@ -143,10 +153,11 @@ public class JavaScriptHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0) {
+        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
             tokenCount++;
             assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have many tokens for complex code", tokenCount > 20);
+        assertTrue("Should not hit max tokens limit", tokenCount < MAX_TOKENS);
     }
 }
