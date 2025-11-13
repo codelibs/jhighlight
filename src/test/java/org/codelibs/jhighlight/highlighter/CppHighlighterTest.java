@@ -18,11 +18,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
-            assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have multiple tokens", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -32,10 +37,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for keywords", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -48,10 +59,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for preprocessor directives", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -63,10 +80,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for comments", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -82,10 +105,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for class definition", tokenCount > 5);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -96,10 +125,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for pointers and references", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -110,10 +145,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for templates", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -125,10 +166,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for namespace", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -138,10 +185,16 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for operators", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -166,10 +219,15 @@ public class CppHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
-            assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have many tokens for complex program", tokenCount > 30);
+        assertTrue("Should consume entire input", index == code.length());
     }
 }

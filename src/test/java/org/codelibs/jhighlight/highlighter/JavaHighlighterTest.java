@@ -18,12 +18,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        byte token;
-        while ((token = highlighter.getNextToken()) != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
-            assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have at least one token", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -33,10 +37,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have multiple tokens for keywords", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -48,11 +58,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
-            assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have multiple tokens", tokenCount > 5);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -65,10 +80,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for comments and code", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -78,10 +99,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for string literal", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -91,10 +118,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for numbers", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -106,10 +139,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for annotations", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -132,11 +171,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
-            assertTrue("Token length should be positive", highlighter.getTokenLength() > 0);
         }
         assertTrue("Should have many tokens for complex class", tokenCount > 20);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -156,9 +200,15 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -168,10 +218,16 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for generics", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 
     @Test
@@ -181,9 +237,15 @@ public class JavaHighlighterTest {
         highlighter.setReader(new StringReader(code));
 
         int tokenCount = 0;
-        while (highlighter.getNextToken() != 0 && tokenCount < MAX_TOKENS) {
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            assertTrue("Token length should be positive", length > 0);
+            index += length;
             tokenCount++;
         }
         assertTrue("Should have tokens for lambda", tokenCount > 0);
+        assertTrue("Should consume entire input", index == code.length());
     }
 }
