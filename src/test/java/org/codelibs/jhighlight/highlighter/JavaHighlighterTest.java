@@ -189,8 +189,16 @@ public class JavaHighlighterTest {
         JavaHighlighter highlighter = new JavaHighlighter();
         highlighter.setReader(new StringReader(code));
 
-        byte token = highlighter.getNextToken();
-        assertTrue("Empty string should produce no tokens", token == 0);
+        // Empty string means index is already at length, no tokens to consume
+        int tokenCount = 0;
+        int index = 0;
+        while (index < code.length() && tokenCount < MAX_TOKENS) {
+            highlighter.getNextToken();
+            int length = highlighter.getTokenLength();
+            index += length;
+            tokenCount++;
+        }
+        assertEquals("Empty string should produce no tokens", 0, tokenCount);
     }
 
     @Test

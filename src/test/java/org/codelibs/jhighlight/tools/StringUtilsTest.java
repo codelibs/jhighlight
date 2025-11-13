@@ -79,7 +79,7 @@ public class StringUtilsTest {
         };
         Pattern[] excluded = new Pattern[] {
             Pattern.compile(".*Test\\..*"),
-            Pattern.compile(".*Mock\\..*")
+            Pattern.compile("Mock.*")
         };
 
         // Should pass - matches java include pattern
