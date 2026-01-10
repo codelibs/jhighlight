@@ -214,4 +214,124 @@ public class XhtmlRendererFactoryTest {
                         + "</code>\n" + "</body>\n" + "</html>\n",
                 codeAsHtml);
     }
+
+    // ===== Additional Edge Case Tests =====
+
+    @Test
+    public void testGetRenderer_CppAliases() {
+        // Test all C++ aliases
+        Renderer cxx = XhtmlRendererFactory.getRenderer("cxx");
+        Renderer cPlusPlus = XhtmlRendererFactory.getRenderer("c++");
+
+        assertNotNull("cxx should return a renderer", cxx);
+        assertNotNull("c++ should return a renderer", cPlusPlus);
+        assertTrue("cxx should be CppXhtmlRenderer", cxx instanceof CppXhtmlRenderer);
+        assertTrue("c++ should be CppXhtmlRenderer", cPlusPlus instanceof CppXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_BeanShellAlias() {
+        Renderer bsh = XhtmlRendererFactory.getRenderer("bsh");
+
+        assertNotNull("bsh should return a renderer", bsh);
+        assertTrue("bsh should be JavaXhtmlRenderer", bsh instanceof JavaXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_LzxExtension() {
+        Renderer lzx = XhtmlRendererFactory.getRenderer("lzx");
+
+        assertNotNull("lzx should return a renderer", lzx);
+        assertTrue("lzx should be XmlXhtmlRenderer", lzx instanceof XmlXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_JavaScript() {
+        Renderer js = XhtmlRendererFactory.getRenderer("js");
+
+        assertNotNull("js should return a renderer", js);
+        assertTrue("js should be JavaScriptXhtmlRenderer", js instanceof JavaScriptXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_NullType() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer(null);
+        assertNull("Null type should return null", renderer);
+    }
+
+    @Test
+    public void testGetRenderer_EmptyType() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("");
+        assertNull("Empty type should return null", renderer);
+    }
+
+    @Test
+    public void testGetSupportedTypes() {
+        java.util.Set<String> types = XhtmlRendererFactory.getSupportedTypes();
+
+        assertNotNull("Supported types should not be null", types);
+        assertTrue("Should contain java", types.contains("java"));
+        assertTrue("Should contain xml", types.contains("xml"));
+        assertTrue("Should contain html", types.contains("html"));
+        assertTrue("Should contain htm", types.contains("htm"));
+        assertTrue("Should contain groovy", types.contains("groovy"));
+        assertTrue("Should contain cpp", types.contains("cpp"));
+        assertTrue("Should contain js", types.contains("js"));
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Lzx() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.lzx");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof XmlXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_JavaScript() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("script.js");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof JavaScriptXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Bsh() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("script.bsh");
+        assertNotNull(renderer);
+        assertTrue(renderer instanceof JavaXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Cpp() {
+        Renderer cpp = XhtmlRendererFactory.getRenderer("main.cpp");
+        Renderer cxx = XhtmlRendererFactory.getRenderer("main.cxx");
+
+        assertNotNull(cpp);
+        assertNotNull(cxx);
+        assertTrue(cpp instanceof CppXhtmlRenderer);
+        assertTrue(cxx instanceof CppXhtmlRenderer);
+    }
+
+    @Test
+    public void testGetRenderer_ByExtension_Unknown() {
+        Renderer renderer = XhtmlRendererFactory.getRenderer("test.txt");
+        assertNull("Unknown extension should return null", renderer);
+
+        renderer = XhtmlRendererFactory.getRenderer("test.py");
+        assertNull("Python extension should return null (not supported)", renderer);
+    }
+
+    @Test
+    public void testRendererInstances() throws IOException {
+        // Test that renderers can actually highlight code
+        String[] types = {"java", "groovy", "cpp", "xml", "html", "js"};
+
+        for (String type : types) {
+            Renderer renderer = XhtmlRendererFactory.getRenderer(type);
+            assertNotNull("Should get renderer for " + type, renderer);
+
+            String result = renderer.highlight("test." + type, "test", "UTF-8", true);
+            assertNotNull("Result should not be null for " + type, result);
+            assertTrue("Result should contain code for " + type, result.contains("<code"));
+        }
+    }
 }
