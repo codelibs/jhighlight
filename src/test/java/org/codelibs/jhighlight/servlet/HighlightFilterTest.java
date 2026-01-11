@@ -212,23 +212,18 @@ public class HighlightFilterTest {
         @Override public boolean isSecure() { return false; }
         @Override public javax.servlet.RequestDispatcher getRequestDispatcher(String path) { return null; }
         @Override public String getRealPath(String path) { return null; }
-        @Override public int getRemotePort() { return 0; }
-        @Override public String getLocalName() { return null; }
-        @Override public String getLocalAddr() { return null; }
-        @Override public int getLocalPort() { return 0; }
+        // Note: getRemotePort, getLocalName, getLocalAddr, getLocalPort not in Servlet API 2.3
     }
 
     private static class MockServletResponse implements ServletResponse {
         private ByteArrayOutputStream output = new ByteArrayOutputStream();
         @Override public String getCharacterEncoding() { return "UTF-8"; }
-        @Override public String getContentType() { return null; }
         @Override public ServletOutputStream getOutputStream() {
             return new ServletOutputStream() {
                 @Override public void write(int b) { output.write(b); }
             };
         }
         @Override public PrintWriter getWriter() { return new PrintWriter(new StringWriter()); }
-        @Override public void setCharacterEncoding(String charset) { }
         @Override public void setContentLength(int len) { }
         @Override public void setContentType(String type) { }
         @Override public void setBufferSize(int size) { }
@@ -239,6 +234,7 @@ public class HighlightFilterTest {
         @Override public void reset() { }
         @Override public void setLocale(java.util.Locale loc) { }
         @Override public java.util.Locale getLocale() { return null; }
+        // Note: getContentType, setCharacterEncoding not in Servlet API 2.3
     }
 
     private static class MockHttpServletRequest extends MockServletRequest implements HttpServletRequest {
