@@ -156,7 +156,8 @@ public class JHighlightTest {
         assertTrue("Output file should be created", outputFile.exists());
 
         String content = new String(Files.readAllBytes(outputFile.toPath()));
-        assertTrue("Should contain code element", content.contains("<code"));
+        // Fragment mode outputs highlighted spans without full HTML structure
+        assertTrue("Should contain span elements for highlighting", content.contains("<span"));
     }
 
     @Test

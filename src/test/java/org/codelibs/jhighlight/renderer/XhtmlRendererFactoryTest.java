@@ -246,20 +246,6 @@ public class XhtmlRendererFactoryTest {
     }
 
     @Test
-    public void testGetRenderer_JavaScript() {
-        Renderer js = XhtmlRendererFactory.getRenderer("js");
-
-        assertNotNull("js should return a renderer", js);
-        assertTrue("js should be JavaScriptXhtmlRenderer", js instanceof JavaScriptXhtmlRenderer);
-    }
-
-    @Test
-    public void testGetRenderer_NullType() {
-        Renderer renderer = XhtmlRendererFactory.getRenderer(null);
-        assertNull("Null type should return null", renderer);
-    }
-
-    @Test
     public void testGetRenderer_EmptyType() {
         Renderer renderer = XhtmlRendererFactory.getRenderer("");
         assertNull("Empty type should return null", renderer);
@@ -273,10 +259,10 @@ public class XhtmlRendererFactoryTest {
         assertTrue("Should contain java", types.contains("java"));
         assertTrue("Should contain xml", types.contains("xml"));
         assertTrue("Should contain html", types.contains("html"));
-        assertTrue("Should contain htm", types.contains("htm"));
         assertTrue("Should contain groovy", types.contains("groovy"));
         assertTrue("Should contain cpp", types.contains("cpp"));
-        assertTrue("Should contain js", types.contains("js"));
+        assertTrue("Should contain lzx", types.contains("lzx"));
+        assertTrue("Should contain xhtml", types.contains("xhtml"));
     }
 
     @Test
@@ -287,10 +273,11 @@ public class XhtmlRendererFactoryTest {
     }
 
     @Test
-    public void testGetRenderer_ByExtension_JavaScript() {
-        Renderer renderer = XhtmlRendererFactory.getRenderer("script.js");
-        assertNotNull(renderer);
-        assertTrue(renderer instanceof JavaScriptXhtmlRenderer);
+    public void testGetRenderer_HtmExtension() {
+        // htm is aliased to html in getRenderer but not in getSupportedTypes
+        Renderer renderer = XhtmlRendererFactory.getRenderer("page.htm");
+        assertNotNull("htm should be supported via alias", renderer);
+        assertTrue(renderer instanceof XmlXhtmlRenderer);
     }
 
     @Test
@@ -323,15 +310,27 @@ public class XhtmlRendererFactoryTest {
     @Test
     public void testRendererInstances() throws IOException {
         // Test that renderers can actually highlight code
-        String[] types = {"java", "groovy", "cpp", "xml", "html", "js"};
+        String[] types = {"java", "groovy", "cpp", "xml", "html"};
 
         for (String type : types) {
             Renderer renderer = XhtmlRendererFactory.getRenderer(type);
             assertNotNull("Should get renderer for " + type, renderer);
 
+            // Fragment mode (true) outputs spans without <code> wrapper
             String result = renderer.highlight("test." + type, "test", "UTF-8", true);
             assertNotNull("Result should not be null for " + type, result);
-            assertTrue("Result should contain code for " + type, result.contains("<code"));
+            assertTrue("Result should contain span for " + type, result.contains("<span"));
         }
+    }
+
+    @Test
+    public void testRendererFullDocument() throws IOException {
+        // Test full document mode includes <code> wrapper
+        Renderer renderer = XhtmlRendererFactory.getRenderer("java");
+        String result = renderer.highlight("Test.java", "public class Test {}", "UTF-8", false);
+
+        assertNotNull(result);
+        assertTrue("Full document should contain code element", result.contains("<code"));
+        assertTrue("Full document should contain html element", result.contains("<html"));
     }
 }

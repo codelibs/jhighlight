@@ -219,7 +219,8 @@ public class RendererEncodingTest {
 
         String result = output.toString("UTF-8");
         assertNotNull("Result should not be null", result);
-        assertTrue("Should contain code element", result.contains("<code"));
+        // Fragment mode outputs spans without <code> wrapper
+        assertTrue("Should contain span elements", result.contains("<span"));
     }
 
     @Test
