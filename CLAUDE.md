@@ -27,7 +27,7 @@ src/main/java/
 ## Gotchas
 
 - Dual package structure: `org.codelibs.jhighlight` (preferred) and `com.uwyn.jhighlight` (legacy compat)
-- Java 8 source/target level despite modern Maven plugins
+- Java 17 source/target level with Jakarta Servlet 6.1 (requires Java 17+ runtime)
 - `fastutil/` is inlined (not a dependency) - do not add fastutil as a Maven dependency
-- Servlet API is `provided` scope (2.3) - only available at compile time
+- Servlet API is `provided` scope (Jakarta Servlet 6.1) - only available at compile time
 - Release uses maven-release-plugin + GPG signing + Sonatype Central publishing

@@ -85,8 +85,8 @@ public abstract class XhtmlRendererFactory
 
 		try
 		{
-			Class klass = Class.forName(classname);
-			return (Renderer)klass.newInstance();
+			Class<?> klass = Class.forName(classname);
+			return (Renderer) klass.getDeclaredConstructor().newInstance();
 		}
 		catch (Exception e)
 		{

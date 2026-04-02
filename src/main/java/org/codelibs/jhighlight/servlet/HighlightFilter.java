@@ -13,17 +13,17 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletRequestWrapper;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpServletResponseWrapper;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponseWrapper;
 
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.codelibs.jhighlight.renderer.Renderer;
@@ -229,20 +229,29 @@ public final class HighlightFilter implements Filter
 	private static class ServletOutputStreamWrapper extends ServletOutputStream
 	{
 		protected ByteArrayOutputStream mOutput;
-		
+
 		public ServletOutputStreamWrapper()
 		{
 			mOutput = new ByteArrayOutputStream();
 		}
-		
+
 		public void write(int b) throws IOException
 		{
 			mOutput.write(b);
 		}
-		
+
 		public byte[] toByteArray()
 		{
 			return mOutput.toByteArray();
+		}
+
+		public boolean isReady()
+		{
+			return true;
+		}
+
+		public void setWriteListener(jakarta.servlet.WriteListener writeListener)
+		{
 		}
 	}
 }

@@ -11,14 +11,14 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.FilterConfig;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletOutputStream;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -192,8 +192,9 @@ public class HighlightFilterTest {
         @Override public String getCharacterEncoding() { return "UTF-8"; }
         @Override public void setCharacterEncoding(String env) { }
         @Override public int getContentLength() { return 0; }
+        @Override public long getContentLengthLong() { return 0; }
         @Override public String getContentType() { return null; }
-        @Override public javax.servlet.ServletInputStream getInputStream() { return null; }
+        @Override public jakarta.servlet.ServletInputStream getInputStream() { return null; }
         @Override public String getParameter(String name) { return null; }
         @Override public java.util.Enumeration getParameterNames() { return null; }
         @Override public String[] getParameterValues(String name) { return null; }
@@ -210,21 +211,38 @@ public class HighlightFilterTest {
         @Override public java.util.Locale getLocale() { return null; }
         @Override public java.util.Enumeration getLocales() { return null; }
         @Override public boolean isSecure() { return false; }
-        @Override public javax.servlet.RequestDispatcher getRequestDispatcher(String path) { return null; }
-        @Override public String getRealPath(String path) { return null; }
-        // Note: getRemotePort, getLocalName, getLocalAddr, getLocalPort not in Servlet API 2.3
+        @Override public jakarta.servlet.RequestDispatcher getRequestDispatcher(String path) { return null; }
+        @Override public int getRemotePort() { return 0; }
+        @Override public String getLocalName() { return null; }
+        @Override public String getLocalAddr() { return null; }
+        @Override public int getLocalPort() { return 0; }
+        @Override public jakarta.servlet.ServletContext getServletContext() { return null; }
+        @Override public jakarta.servlet.AsyncContext startAsync() { return null; }
+        @Override public jakarta.servlet.AsyncContext startAsync(ServletRequest req, ServletResponse res) { return null; }
+        @Override public boolean isAsyncStarted() { return false; }
+        @Override public boolean isAsyncSupported() { return false; }
+        @Override public jakarta.servlet.AsyncContext getAsyncContext() { return null; }
+        @Override public jakarta.servlet.DispatcherType getDispatcherType() { return null; }
+        @Override public String getRequestId() { return null; }
+        @Override public String getProtocolRequestId() { return null; }
+        @Override public jakarta.servlet.ServletConnection getServletConnection() { return null; }
     }
 
     private static class MockServletResponse implements ServletResponse {
         private ByteArrayOutputStream output = new ByteArrayOutputStream();
         @Override public String getCharacterEncoding() { return "UTF-8"; }
+        @Override public void setCharacterEncoding(String charset) { }
+        @Override public String getContentType() { return null; }
         @Override public ServletOutputStream getOutputStream() {
             return new ServletOutputStream() {
                 @Override public void write(int b) { output.write(b); }
+                @Override public boolean isReady() { return true; }
+                @Override public void setWriteListener(jakarta.servlet.WriteListener listener) { }
             };
         }
         @Override public PrintWriter getWriter() { return new PrintWriter(new StringWriter()); }
         @Override public void setContentLength(int len) { }
+        @Override public void setContentLengthLong(long len) { }
         @Override public void setContentType(String type) { }
         @Override public void setBufferSize(int size) { }
         @Override public int getBufferSize() { return 0; }
@@ -234,7 +252,6 @@ public class HighlightFilterTest {
         @Override public void reset() { }
         @Override public void setLocale(java.util.Locale loc) { }
         @Override public java.util.Locale getLocale() { return null; }
-        // Note: getContentType, setCharacterEncoding not in Servlet API 2.3
     }
 
     private static class MockHttpServletRequest extends MockServletRequest implements HttpServletRequest {
@@ -254,7 +271,7 @@ public class HighlightFilterTest {
         }
 
         @Override public String getAuthType() { return null; }
-        @Override public javax.servlet.http.Cookie[] getCookies() { return null; }
+        @Override public jakarta.servlet.http.Cookie[] getCookies() { return null; }
         @Override public long getDateHeader(String name) { return 0; }
         @Override public String getHeader(String name) { return null; }
         @Override public java.util.Enumeration getHeaders(String name) { return null; }
@@ -272,12 +289,18 @@ public class HighlightFilterTest {
         @Override public String getRequestURI() { return requestURI; }
         @Override public StringBuffer getRequestURL() { return requestURL; }
         @Override public String getServletPath() { return servletPath; }
-        @Override public javax.servlet.http.HttpSession getSession(boolean create) { return null; }
-        @Override public javax.servlet.http.HttpSession getSession() { return null; }
+        @Override public jakarta.servlet.http.HttpSession getSession(boolean create) { return null; }
+        @Override public jakarta.servlet.http.HttpSession getSession() { return null; }
+        @Override public String changeSessionId() { return null; }
         @Override public boolean isRequestedSessionIdValid() { return false; }
         @Override public boolean isRequestedSessionIdFromCookie() { return false; }
         @Override public boolean isRequestedSessionIdFromURL() { return false; }
-        @Override public boolean isRequestedSessionIdFromUrl() { return false; }
+        @Override public boolean authenticate(HttpServletResponse response) { return false; }
+        @Override public void login(String username, String password) { }
+        @Override public void logout() { }
+        @Override public java.util.Collection<jakarta.servlet.http.Part> getParts() { return null; }
+        @Override public jakarta.servlet.http.Part getPart(String name) { return null; }
+        @Override public <T extends jakarta.servlet.http.HttpUpgradeHandler> T upgrade(Class<T> handlerClass) { return null; }
     }
 
     private static class MockHttpServletResponse extends MockServletResponse implements HttpServletResponse {
@@ -290,6 +313,8 @@ public class HighlightFilterTest {
         public ServletOutputStream getOutputStream() {
             return new ServletOutputStream() {
                 @Override public void write(int b) { output.write(b); }
+                @Override public boolean isReady() { return true; }
+                @Override public void setWriteListener(jakarta.servlet.WriteListener listener) { }
             };
         }
 
@@ -297,15 +322,14 @@ public class HighlightFilterTest {
             return output.toByteArray();
         }
 
-        @Override public void addCookie(javax.servlet.http.Cookie cookie) { }
+        @Override public void addCookie(jakarta.servlet.http.Cookie cookie) { }
         @Override public boolean containsHeader(String name) { return false; }
         @Override public String encodeURL(String url) { return url; }
         @Override public String encodeRedirectURL(String url) { return url; }
-        @Override public String encodeUrl(String url) { return url; }
-        @Override public String encodeRedirectUrl(String url) { return url; }
         @Override public void sendError(int sc, String msg) { this.status = sc; }
         @Override public void sendError(int sc) { this.status = sc; }
         @Override public void sendRedirect(String location) { }
+        @Override public void sendRedirect(String location, int sc, boolean clearBuffer) { }
         @Override public void setDateHeader(String name, long date) { }
         @Override public void addDateHeader(String name, long date) { }
         @Override public void setHeader(String name, String value) { }
@@ -313,7 +337,10 @@ public class HighlightFilterTest {
         @Override public void setIntHeader(String name, int value) { }
         @Override public void addIntHeader(String name, int value) { }
         @Override public void setStatus(int sc) { this.status = sc; }
-        @Override public void setStatus(int sc, String sm) { this.status = sc; }
+        @Override public int getStatus() { return this.status; }
+        @Override public String getHeader(String name) { return null; }
+        @Override public java.util.Collection<String> getHeaders(String name) { return java.util.Collections.emptyList(); }
+        @Override public java.util.Collection<String> getHeaderNames() { return java.util.Collections.emptyList(); }
         @Override public void setContentType(String type) { this.contentType = type; }
         @Override public void setContentLength(int len) { this.contentLength = len; }
     }
