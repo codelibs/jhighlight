@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.codelibs</groupId>
 	<artifactId>jhighlight</artifactId>
-	<version>2.0.0-SNAPSHOT</version>
+	<version>2.0.0</version>
 	<packaging>jar</packaging>
 	<name>JHighlight</name>
 	<description>
@@ -46,7 +46,7 @@
 		<connection>scm:git:git@github.com:codelibs/jhighlight.git</connection>
 		<developerConnection>scm:git:git@github.com:codelibs/jhighlight.git</developerConnection>
 		<url>git@github.com:codelibs/jhighlight.git</url>
-	  <tag>HEAD</tag>
+	  <tag>jhighlight-2.0.0</tag>
   </scm>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
