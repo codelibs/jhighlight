@@ -45,6 +45,7 @@ import java.util.Iterator;
  * {@link #contains(Object)} methods that just call the type-specific counterpart. 
  */
 public abstract class AbstractCharCollection extends AbstractCollection<Character> implements CharCollection {
+ /** Creates a new abstract collection. */
  protected AbstractCharCollection() {}
  public char[] toArray( char a[] ) {
   return toCharArray( a );
@@ -149,7 +150,11 @@ public abstract class AbstractCharCollection extends AbstractCollection<Characte
  public boolean add( final Character o ) {
   return add( o.charValue() );
  }
- /** Delegates to the corresponding type-specific method. */
+ /** Delegates to the corresponding type-specific method.
+  *
+  * @param o the object to be removed.
+  * @return <code>true</code> if this collection was modified as a result of the call.
+  */
  public boolean rem( final Object o ) {
   return rem( ((((Character)(o)).charValue())) );
  }

@@ -41,6 +41,8 @@ import java.util.Set;
  * <P>Additionally, this interface strengthens (again) {@link #iterator()}.
  *
  * @see Set
+ *
+ * @param <K> the type of the elements maintained by this set.
  */
 public interface ObjectSet <K> extends ObjectCollection <K>, Set<K> {
  /** Returns a type-specific iterator on the elements of this set.

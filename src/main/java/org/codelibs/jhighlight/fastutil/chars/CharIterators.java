@@ -52,6 +52,7 @@ public class CharIterators {
 	 */
  public static class EmptyIterator extends AbstractCharListIterator implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = -7046029254386353129L;
+  /** Creates a new empty iterator. */
   protected EmptyIterator() {}
   public boolean hasNext() { return false; }
   public boolean hasPrevious() { return false; }
@@ -62,6 +63,10 @@ public class CharIterators {
   public int skip( int n ) { return 0; };
   public int back( int n ) { return 0; };
   public Object clone() { return EMPTY_ITERATOR; }
+        /** Returns the canonical empty iterator on deserialization.
+         *
+         * @return the canonical empty iterator.
+         */
         private Object readResolve() { return EMPTY_ITERATOR; }
  }
  /** An empty iterator (immutable). It is serializable and cloneable.
@@ -159,6 +164,7 @@ public class CharIterators {
 	 * @param array an array to wrap into a type-specific list iterator.
 	 * @param offset the first element of the array to be returned.
 	 * @param length the number of elements to return.
+	 * @return a type-specific list iterator wrapping the given array.
 	 */
  public static CharListIterator wrap( final char[] array, final int offset, final int length ) {
   CharArrays.ensureOffsetLength( array, offset, length );
@@ -170,6 +176,7 @@ public class CharIterators {
 	 * all elements of the given array.
 	 *
 	 * @param array an array to wrap into a type-specific list iterator.
+	 * @return a type-specific list iterator wrapping the given array.
 	 */
  public static CharListIterator wrap( final char[] array ) {
   return new ArrayIterator ( array, 0, array.length );
@@ -215,7 +222,7 @@ public class CharIterators {
 	 *
 	 * @param i a type-specific iterator.
 	 * @param max the maximum number of elements to be unwrapped.
-	 * @return an array containing the elements returned by the iterator (at most <ocde>max</code>).
+	 * @return an array containing the elements returned by the iterator (at most <code>max</code>).
 	 */
  @SuppressWarnings("unchecked")
  public static char[] unwrap( final CharIterator i, int max ) {
@@ -527,7 +534,12 @@ public class CharIterators {
  }
    /** An unmodifiable wrapper class for iterators. */
  public static class UnmodifiableIterator extends AbstractCharIterator {
+  /** The wrapped iterator. */
   final protected CharIterator i;
+  /** Creates a new unmodifiable iterator wrapping the given iterator.
+   *
+   * @param i the iterator to wrap.
+   */
   @SuppressWarnings("unchecked")
   public UnmodifiableIterator( final CharIterator i ) {
    this.i = i;
@@ -544,7 +556,12 @@ public class CharIterators {
  public static CharIterator unmodifiable( final CharIterator i ) { return new UnmodifiableIterator ( i ); }
    /** An unmodifiable wrapper class for bidirectional iterators. */
  public static class UnmodifiableBidirectionalIterator extends AbstractCharBidirectionalIterator {
+  /** The wrapped bidirectional iterator. */
   final protected CharBidirectionalIterator i;
+  /** Creates a new unmodifiable bidirectional iterator wrapping the given iterator.
+   *
+   * @param i the iterator to wrap.
+   */
   @SuppressWarnings("unchecked")
   public UnmodifiableBidirectionalIterator( final CharBidirectionalIterator i ) {
    this.i = i;
@@ -564,7 +581,12 @@ public class CharIterators {
  public static CharBidirectionalIterator unmodifiable( final CharBidirectionalIterator i ) { return new UnmodifiableBidirectionalIterator ( i ); }
    /** An unmodifiable wrapper class for list iterators. */
  public static class UnmodifiableListIterator extends AbstractCharListIterator {
+  /** The wrapped list iterator. */
   final protected CharListIterator i;
+  /** Creates a new unmodifiable list iterator wrapping the given iterator.
+   *
+   * @param i the iterator to wrap.
+   */
   @SuppressWarnings("unchecked")
   public UnmodifiableListIterator( final CharListIterator i ) {
    this.i = i;

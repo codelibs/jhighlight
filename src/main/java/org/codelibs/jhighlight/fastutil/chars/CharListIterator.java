@@ -48,6 +48,14 @@ import java.util.ListIterator;
  * @see org.codelibs.jhighlight.fastutil.BidirectionalIterator
  */
 public interface CharListIterator extends ListIterator<Character>, CharBidirectionalIterator {
+ /** Replaces the last element returned by {@link #next()} or {@link #previous()} with the specified element.
+  *
+  * @param k the element with which to replace the last element returned.
+  */
  void set( char k );
+ /** Inserts the specified element into the list at the current position of this iterator.
+  *
+  * @param k the element to insert.
+  */
  void add( char k );
 }

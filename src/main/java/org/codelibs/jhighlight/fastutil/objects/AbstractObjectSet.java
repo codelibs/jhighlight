@@ -32,12 +32,16 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License. 
+ * limitations under the License.
  */
 package org.codelibs.jhighlight.fastutil.objects;
 import java.util.Set;
-/**  An abstract class providing basic methods for sets implementing a type-specific interface. */
+/**  An abstract class providing basic methods for sets implementing a type-specific interface.
+ *
+ * @param <K> the type of the elements maintained by this set.
+ */
 public abstract class AbstractObjectSet <K> extends AbstractObjectCollection <K> implements Cloneable, ObjectSet <K> {
+ /** Creates a new abstract set. */
  protected AbstractObjectSet() {}
  public abstract ObjectIterator <K> iterator();
  public boolean equals( final Object o ) {

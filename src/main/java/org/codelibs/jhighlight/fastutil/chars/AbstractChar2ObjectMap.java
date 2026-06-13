@@ -55,9 +55,12 @@ import org.codelibs.jhighlight.fastutil.objects.ObjectSet;
  * that implements a type-specific version of {@link java.util.Map.Entry}; it
  * is particularly useful for those classes that do not implement their own
  * entries (e.g., most immutable maps).
+ *
+ * @param <V> the type of the values stored in this map.
  */
 public abstract class AbstractChar2ObjectMap <V> extends AbstractChar2ObjectFunction <V> implements Char2ObjectMap <V>, java.io.Serializable {
  private static final long serialVersionUID = -4940583368468432370L;
+ /** Creates a new abstract map. */
  protected AbstractChar2ObjectMap() {}
  /** Checks whether the given value is contained in {@link #values()}. */
  public boolean containsValue( Object v ) {
@@ -100,14 +103,28 @@ public abstract class AbstractChar2ObjectMap <V> extends AbstractChar2ObjectFunc
 	 *
 	 * <P>This class does not implement {@link java.util.Map.Entry#setValue(Object) setValue()}, as the modification
 	 * would not be reflected in the base map.
+	 *
+	 * @param <V> the type of the value stored in this entry.
 	 */
  public static class BasicEntry <V> implements Char2ObjectMap.Entry <V> {
+  /** The key of this entry. */
   protected char key;
+  /** The value of this entry. */
   protected V value;
+  /** Creates a new entry with the given object key and value.
+   *
+   * @param key the key for this entry.
+   * @param value the value for this entry.
+   */
   public BasicEntry( final Character key, final V value ) {
    this.key = ((key).charValue());
    this.value = (value);
   }
+  /** Creates a new entry with the given primitive key and value.
+   *
+   * @param key the key for this entry.
+   * @param value the value for this entry.
+   */
   public BasicEntry( final char key, final V value ) {
    this.key = key;
    this.value = value;

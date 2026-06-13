@@ -27,6 +27,8 @@ import java.util.NoSuchElementException;
  * or even a more powerful {@link #peek(int)} method that provides
  * access to all elements on the stack (indexed from the top, which
  * has index 0).
+ *
+ * @param <K> the type of the elements that can be pushed onto and popped from this stack.
  */
 
 public interface Stack<K> {
@@ -63,6 +65,7 @@ public interface Stack<K> {
 
 	/** Peeks at an element on the stack (optional operation).
 	 *
+	 * @param i the distance from the top of the stack of the element to peek at; 0 represents the top.
 	 * @return the <code>i</code>-th element on the stack; 0 represents the top.
 	 * @throws IndexOutOfBoundsException if the designated element does not exist..
 	 */

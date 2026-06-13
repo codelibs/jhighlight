@@ -124,6 +124,11 @@ public abstract class FileUtils
 		return filelist;
 	}
 	
+	/** Returns the extension of the given file name.
+	 *
+	 * @param fileName the file name whose extension is to be extracted.
+	 * @return the lower-cased extension of the file name, or <code>null</code> if there is none.
+	 */
 	public static String getExtension(String fileName)
 	{
 		if (null == fileName)	throw new IllegalArgumentException("fileName can't be null.");

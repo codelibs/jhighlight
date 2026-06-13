@@ -26,11 +26,11 @@ package org.codelibs.jhighlight.fastutil;
  * In case the domain is known, {@link #containsKey(Object)} can be used to perform membership queries. 
  *
  * <p>The choice of naming all methods exactly as in {@link java.util.Map} makes it possible
- * for all type-specific maps to extend type-specific functions (e.g., {@link org.codelibs.jhighlight.fastutil.ints.Int2IntMap}
- * extends {@link org.codelibs.jhighlight.fastutil.ints.Int2IntFunction}). However, {@link #size()} is allowed to return -1 to denote
+ * for all type-specific maps to extend type-specific functions (e.g., {@code org.codelibs.jhighlight.fastutil.ints.Int2IntMap}
+ * extends {@code org.codelibs.jhighlight.fastutil.ints.Int2IntFunction}). However, {@link #size()} is allowed to return -1 to denote
  * that the number of keys is not available (e.g., in the case of a string hash function).
- * 
- * <p>Note that there is an {@link org.codelibs.jhighlight.fastutil.objects.Object2ObjectFunction} that
+ *
+ * <p>Note that there is an {@code org.codelibs.jhighlight.fastutil.objects.Object2ObjectFunction} that
  * can also set its default return value.
  * 
  * <p><strong>Warning</strong>: Equality of functions is <em>not specified</em>
@@ -38,6 +38,9 @@ package org.codelibs.jhighlight.fastutil;
  * and establish whether two functions represent the same mathematical entity.
  *
  * @see java.util.Map
+ *
+ * @param <K> the type of the keys of this function.
+ * @param <V> the type of the values stored in this function.
  */
 
 public interface Function<K,V> {
@@ -74,8 +77,8 @@ public interface Function<K,V> {
 	 boolean containsKey( Object key );
 
 	/** Removes this key and the associated value from this function if it is present (optional operation).
-	 *  
-	 * @param key
+	 *
+	 * @param key the key.
 	 * @return the old value, or <code>null</code> if no value was present for the given key.
 	 * @see java.util.Map#remove(Object)
 	 */

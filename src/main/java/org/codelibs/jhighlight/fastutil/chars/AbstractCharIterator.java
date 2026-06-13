@@ -49,6 +49,7 @@ package org.codelibs.jhighlight.fastutil.chars;
  * @see java.util.Iterator
  */
 public abstract class AbstractCharIterator implements CharIterator {
+ /** Creates a new abstract iterator. */
  protected AbstractCharIterator() {}
  /** Delegates to the corresponding generic method. */
  public char nextChar() { return next().charValue(); }

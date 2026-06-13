@@ -50,6 +50,8 @@ import java.util.List;
  * of these methods, it is expected that concrete implementation override them with optimized versions.
  *
  * @see List
+ *
+ * @param <K> the type of the elements maintained by this list.
  */
 public interface ObjectList <K> extends List<K>, Comparable<List<? extends K>>, ObjectCollection <K> {
  /** Returns a type-specific iterator on the elements of this list (in proper sequence).
@@ -64,6 +66,8 @@ public interface ObjectList <K> extends List<K>, Comparable<List<? extends K>>, 
  /** Returns a type-specific list iterator on the list.
 	 *
 	 * @see #listIterator()
+	 *
+	 * @return a type-specific list iterator on this list.
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #listIterator()}.
 	 */
  @Deprecated
@@ -71,6 +75,9 @@ public interface ObjectList <K> extends List<K>, Comparable<List<? extends K>>, 
  /** Returns a type-specific list iterator on the list starting at a given index.
 	 *
 	 * @see #listIterator(int)
+	 *
+	 * @param index the index at which the list iterator will start.
+	 * @return a type-specific list iterator on this list starting at the given index.
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #listIterator(int)}.
 	 */
  @Deprecated
@@ -86,6 +93,10 @@ public interface ObjectList <K> extends List<K>, Comparable<List<? extends K>>, 
 	 */
  ObjectListIterator <K> listIterator( int index );
  /** Returns a type-specific view of the portion of this list from the index <code>from</code>, inclusive, to the index <code>to</code>, exclusive.
+	 *
+	 * @param from the starting index (inclusive).
+	 * @param to the ending index (exclusive).
+	 * @return a type-specific view of the specified portion of this list.
 	 * @see List#subList(int,int)
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #subList(int,int)}.
 	 */

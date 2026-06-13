@@ -59,6 +59,9 @@ public interface CharSet extends CharCollection , Set<Character> {
 	 * This unfortunate situation is caused by the clash
 	 * with the similarly named index-based method in the {@link java.util.List} interface.
 	 *
+	 *
+	 * @param k the element to be removed.
+	 * @return <code>true</code> if this set contained the specified element.
 	 * @see java.util.Collection#remove(Object)
 	 */
  public boolean remove( char k );

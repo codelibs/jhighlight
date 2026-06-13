@@ -49,6 +49,8 @@ import java.util.Comparator;
 public interface BooleanComparator extends Comparator<Boolean> {
  /** Compares the given primitive types.
 	 *
+	 * @param k1 the first value to compare.
+	 * @param k2 the second value to compare.
 	 * @see java.util.Comparator
 	 * @return A positive integer, zero, or a negative integer if the first
 	 * argument is greater than, equal to, or smaller than, respectively, the

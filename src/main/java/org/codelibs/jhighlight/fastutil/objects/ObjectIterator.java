@@ -40,6 +40,8 @@ import java.util.Iterator;
  * the possibility to skip elements.
  *
  * @see Iterator
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 public interface ObjectIterator <K> extends Iterator<K> {
  /** Skips the given number of elements.

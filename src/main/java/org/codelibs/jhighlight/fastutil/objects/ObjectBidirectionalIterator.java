@@ -40,6 +40,8 @@ import org.codelibs.jhighlight.fastutil.BidirectionalIterator;
  * and the possibility to skip elements backwards.
  *
  * @see BidirectionalIterator
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 public interface ObjectBidirectionalIterator <K> extends ObjectIterator <K>, BidirectionalIterator<K> {
  /** Moves back for the given number of elements.

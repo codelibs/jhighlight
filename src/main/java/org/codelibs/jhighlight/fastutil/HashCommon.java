@@ -21,6 +21,7 @@ package org.codelibs.jhighlight.fastutil;
 
 public class HashCommon {
 
+	/** Creates a new hash-common utility holder. */
 	protected HashCommon() {};
 
 	/** This reference is used to fill keys and values of removed entries (if
@@ -70,6 +71,7 @@ public class HashCommon {
 
 	/** Returns the hash code that would be returned by {@link Float#hashCode()}.
 	 *
+	 * @param f the value to hash.
 	 * @return the same code as {@link Float#hashCode() new Float(f).hashCode()}.
 	 */
 
@@ -79,6 +81,7 @@ public class HashCommon {
 
 	/** Returns the hash code that would be returned by {@link Double#hashCode()}.
 	 *
+	 * @param d the value to hash.
 	 * @return the same code as {@link Double#hashCode() new Double(f).hashCode()}.
 	 */
 
@@ -88,7 +91,8 @@ public class HashCommon {
 	}
 
 	/** Returns the hash code that would be returned by {@link Long#hashCode()}.
-	 * 
+	 *
+	 * @param l the value to hash.
 	 * @return the same code as {@link Long#hashCode() new Long(f).hashCode()}.
 	 */
 	final public static int long2int( final long l ) {

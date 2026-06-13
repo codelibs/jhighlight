@@ -61,7 +61,7 @@ import org.codelibs.jhighlight.fastutil.Hash;
  * arrays much like array lists. This can be very useful when efficiency (or
  * syntactic simplicity) reasons make array lists unsuitable.
  *
- * <P>Note that {@link org.codelibs.jhighlight.fastutil.io.BinIO} and {@link org.codelibs.jhighlight.fastutil.io.TextIO}
+ * <P>Note that {@code org.codelibs.jhighlight.fastutil.io.BinIO} and {@code org.codelibs.jhighlight.fastutil.io.TextIO}
  * contain several methods make it possible to load and save arrays of primitive types as sequences
  * of elements in {@link java.io.DataInput} format (i.e., not as objects) or as sequences of lines of text.
  *

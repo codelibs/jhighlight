@@ -22,6 +22,9 @@ import org.codelibs.jhighlight.highlighter.GroovyHighlighter;
  */
 public class GroovyXhtmlRenderer extends XhtmlRenderer
 {
+	/** Creates a new {@link GroovyXhtmlRenderer}. */
+	public GroovyXhtmlRenderer() {}
+	/** The default CSS styles used by this renderer. */
 	public final static HashMap DEFAULT_CSS = new HashMap() {{
 			put("h1",
 				"font-family: sans-serif; " +

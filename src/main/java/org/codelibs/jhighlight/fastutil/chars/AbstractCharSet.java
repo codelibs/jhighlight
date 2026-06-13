@@ -39,6 +39,7 @@ package org.codelibs.jhighlight.fastutil.chars;
 import java.util.Set;
 /**  An abstract class providing basic methods for sets implementing a type-specific interface. */
 public abstract class AbstractCharSet extends AbstractCharCollection implements Cloneable, CharSet {
+ /** Creates a new abstract set. */
  protected AbstractCharSet() {}
  public abstract CharIterator iterator();
  public boolean equals( final Object o ) {

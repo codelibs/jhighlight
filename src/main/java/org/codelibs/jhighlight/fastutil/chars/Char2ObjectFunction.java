@@ -65,6 +65,8 @@ import org.codelibs.jhighlight.fastutil.Function;
  * this is not possible, as there is no type-specific version).
  *
  * @see Function
+ *
+ * @param <V> the type of the values stored in this function.
  */
 public interface Char2ObjectFunction <V> extends Function<Character, V> {
  /** Adds a pair to the map.
@@ -83,12 +85,15 @@ public interface Char2ObjectFunction <V> extends Function<Character, V> {
 	 */
  V get( char key );
  /** Removes the mapping with the given key.
-	 * @param key
+	 * @param key the key.
 	 * @return the old value, or the {@linkplain #defaultReturnValue() default return value} if no value was present for the given key.
 	 * @see Function#remove(Object)
 	 */
  V remove( char key );
- /**
+ /** Returns whether this function contains a mapping for the given key.
+	 *
+	 * @param key the key.
+	 * @return <code>true</code> if this function associates a value to the given key.
 	 * @see Function#containsKey(Object)
 	 */
  boolean containsKey( char key );

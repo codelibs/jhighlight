@@ -45,8 +45,11 @@ import org.codelibs.jhighlight.fastutil.Stack;
 /**  An abstract class providing basic methods for lists implementing a type-specific list interface.
  *
  * <P>As an additional bonus, this class implements on top of the list operations a type-specific stack.
+ *
+ * @param <K> the type of the elements maintained by this list.
  */
 public abstract class AbstractObjectList <K> extends AbstractObjectCollection <K> implements ObjectList <K>, Stack <K> {
+ /** Creates a new abstract list. */
  protected AbstractObjectList() {}
  /** Ensures that the given index is nonnegative and not greater than the list size.
 	 *
@@ -314,6 +317,10 @@ public abstract class AbstractObjectList <K> extends AbstractObjectCollection <K
   s.append("]");
   return s.toString();
  }
+ /** A class implementing a sublist view of a type-specific list.
+  *
+  * @param <K> the type of the elements maintained by this list.
+  */
  public static class ObjectSubList <K> extends AbstractObjectList <K> implements java.io.Serializable {
      private static final long serialVersionUID = -7046029254386353129L;
   /** The list this sublist restricts. */
@@ -323,6 +330,12 @@ public abstract class AbstractObjectList <K> extends AbstractObjectCollection <K
   /** Final (exclusive) index of this sublist. */
   protected int to;
   private static final boolean ASSERTS = false;
+  /** Creates a new sublist view of the given list.
+   *
+   * @param l the list whose sublist is to be created.
+   * @param from the starting index of the sublist (inclusive).
+   * @param to the ending index of the sublist (exclusive).
+   */
   public ObjectSubList( final ObjectList <K> l, final int from, final int to ) {
    this.l = l;
    this.from = from;

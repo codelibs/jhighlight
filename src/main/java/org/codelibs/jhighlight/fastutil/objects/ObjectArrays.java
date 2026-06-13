@@ -99,6 +99,8 @@ public class ObjectArrays {
 	 * @return <code>array</code>, if it contains <code>length</code> entries or more; otherwise,
 	 * an array with <code>length</code> entries whose first <code>array.length</code>
 	 * entries are the same as those of <code>array</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] ensureCapacity( final K[] array, final int length ) {
   if ( length > array.length ) {
@@ -117,6 +119,8 @@ public class ObjectArrays {
 	 * @return <code>array</code>, if it can contain <code>length</code> entries or more; otherwise,
 	 * an array with <code>length</code> entries whose first <code>preserve</code>
 	 * entries are the same as those of <code>array</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] ensureCapacity( final K[] array, final int length, final int preserve ) {
   if ( length > array.length ) {
@@ -140,7 +144,10 @@ public class ObjectArrays {
 	 * entries; otherwise, an array with
 	 * max(<code>length</code>,<code>array.length</code>/&phi;) entries whose first
 	 * <code>array.length</code> entries are the same as those of <code>array</code>.
-	 * */
+	 *
+	 *
+	 * @param <K> the type of the array elements.
+	 */
  public static <K> K[] grow( final K[] array, final int length ) {
   if ( length > array.length ) {
    final int newLength = (int)Math.max( Math.min( 2L * array.length, Arrays.MAX_ARRAY_SIZE ), length );
@@ -165,7 +172,10 @@ public class ObjectArrays {
 	 * entries; otherwise, an array with
 	 * max(<code>length</code>,<code>array.length</code>/&phi;) entries whose first
 	 * <code>preserve</code> entries are the same as those of <code>array</code>.
-	 * */
+	 *
+	 *
+	 * @param <K> the type of the array elements.
+	 */
  public static <K> K[] grow( final K[] array, final int length, final int preserve ) {
   if ( length > array.length ) {
    final int newLength = (int)Math.max( Math.min( 2L * array.length, Arrays.MAX_ARRAY_SIZE ), length );
@@ -185,6 +195,8 @@ public class ObjectArrays {
 	 * <code>length</code> entries whose entries are the same as
 	 * the first <code>length</code> entries of <code>array</code>.
 	 * 
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] trim( final K[] array, final int length ) {
   if ( length >= array.length ) return array;
@@ -205,6 +217,8 @@ public class ObjectArrays {
 	 * whose first <code>array.length</code> entries are the same as those of
 	 * <code>array</code>.
 	 * 
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] setLength( final K[] array, final int length ) {
   if ( length == array.length ) return array;
@@ -217,6 +231,8 @@ public class ObjectArrays {
 	 * @param offset the first element to copy.
 	 * @param length the number of elements to copy.
 	 * @return a new array containing <code>length</code> elements of <code>array</code> starting at <code>offset</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] copy( final K[] array, final int offset, final int length ) {
   ensureOffsetLength( array, offset, length );
@@ -229,6 +245,8 @@ public class ObjectArrays {
 	 *
 	 * @param array an array.
 	 * @return a copy of <code>array</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] copy( final K[] array ) {
   return array.clone();
@@ -240,6 +258,8 @@ public class ObjectArrays {
 	 *
 	 * @param array an array.
 	 * @param value the new value for all elements of the array.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void fill( final K[] array, final K value ) {
   int i = array.length;
@@ -255,6 +275,8 @@ public class ObjectArrays {
 	 * @param from the starting index of the portion to fill (inclusive).
 	 * @param to the end index of the portion to fill (exclusive).
 	 * @param value the new value for all elements of the specified portion of the array.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void fill( final K[] array, final int from, int to, final K value ) {
   ensureFromTo( array, from, to );
@@ -267,6 +289,8 @@ public class ObjectArrays {
 	 * @param a2 another array.
 	 * @return true if the two arrays are of the same length, and their elements are equal.
 	 * @deprecated Please use the corresponding {@link java.util.Arrays} method, which is intrinsified in recent JVMs.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  @Deprecated
  public static <K> boolean equals( final K[] a1, final K a2[] ) {
@@ -284,6 +308,8 @@ public class ObjectArrays {
 	 * @param to an end index (exclusive).
 	 * @throws IllegalArgumentException if <code>from</code> is greater than <code>to</code>.
 	 * @throws ArrayIndexOutOfBoundsException if <code>from</code> or <code>to</code> are greater than the array length or negative.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void ensureFromTo( final K[] a, final int from, final int to ) {
   Arrays.ensureFromTo( a.length, from, to );
@@ -297,6 +323,8 @@ public class ObjectArrays {
 	 * @param length a length (the number of elements in the range).
 	 * @throws IllegalArgumentException if <code>length</code> is negative.
 	 * @throws ArrayIndexOutOfBoundsException if <code>offset</code> is negative or <code>offset</code>+<code>length</code> is greater than the array length.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void ensureOffsetLength( final K[] a, final int offset, final int length ) {
   Arrays.ensureOffsetLength( a.length, offset, length );
@@ -386,6 +414,8 @@ public class ObjectArrays {
 	 * @param to the index of the last element (exclusive) to be sorted.
 	 * @param comp the comparator to determine the sorting order.
 	 * 
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void quickSort( final K[] x, final int from, final int to, final Comparator <K> comp ) {
   final int len = to - from;
@@ -446,6 +476,8 @@ public class ObjectArrays {
 	 * @param x the array to be sorted.
 	 * @param comp the comparator to determine the sorting order.
 	 * 
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void quickSort( final K[] x, final Comparator <K> comp ) {
   quickSort( x, 0, x.length, comp );
@@ -471,6 +503,8 @@ public class ObjectArrays {
 	 * @param x the array to be sorted.
 	 * @param from the index of the first element (inclusive) to be sorted.
 	 * @param to the index of the last element (exclusive) to be sorted.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  @SuppressWarnings("unchecked")
  public static <K> void quickSort( final K[] x, final int from, final int to ) {
@@ -530,6 +564,8 @@ public class ObjectArrays {
 	 * 
 	 * @param x the array to be sorted.
 	 * 
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void quickSort( final K[] x ) {
   quickSort( x, 0, x.length );
@@ -544,6 +580,8 @@ public class ObjectArrays {
 	 * @param to the index of the last element (exclusive) to be sorted.
 	 * @param supp a support array containing at least <code>to</code> elements, and whose entries are identical to those
 	 * of {@code a} in the specified range.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  @SuppressWarnings("unchecked")
  public static <K> void mergeSort( final K a[], final int from, final int to, final K supp[] ) {
@@ -577,6 +615,8 @@ public class ObjectArrays {
 	 * @param a the array to be sorted.
 	 * @param from the index of the first element (inclusive) to be sorted.
 	 * @param to the index of the last element (exclusive) to be sorted.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void mergeSort( final K a[], final int from, final int to ) {
   mergeSort( a, from, to, a.clone() );
@@ -587,6 +627,8 @@ public class ObjectArrays {
 	 * of the sort. An array as large as <code>a</code> will be allocated by this method.
 	 
 	 * @param a the array to be sorted.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void mergeSort( final K a[] ) {
   mergeSort( a, 0, a.length );
@@ -603,6 +645,8 @@ public class ObjectArrays {
 	 * @param comp the comparator to determine the sorting order.
 	 * @param supp a support array containing at least <code>to</code> elements, and whose entries are identical to those
 	 * of {@code a} in the specified range.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  @SuppressWarnings("unchecked")
  public static <K> void mergeSort( final K a[], final int from, final int to, Comparator <K> comp, final K supp[] ) {
@@ -638,6 +682,8 @@ public class ObjectArrays {
 	 * @param from the index of the first element (inclusive) to be sorted.
 	 * @param to the index of the last element (exclusive) to be sorted.
 	 * @param comp the comparator to determine the sorting order.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void mergeSort( final K a[], final int from, final int to, Comparator <K> comp ) {
   mergeSort( a, from, to, comp, a.clone() );
@@ -650,6 +696,8 @@ public class ObjectArrays {
 	 
 	 * @param a the array to be sorted.
 	 * @param comp the comparator to determine the sorting order.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> void mergeSort( final K a[], Comparator <K> comp ) {
   mergeSort( a, 0, a.length, comp );
@@ -673,6 +721,8 @@ public class ObjectArrays {
 	 *             that this guarantees that the return value will be &gt;= 0 if
 	 *             and only if the key is found.
 	 * @see java.util.Arrays
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  @SuppressWarnings({"unchecked","rawtypes"})
  public static <K> int binarySearch( final K[] a, int from, int to, final K key ) {
@@ -705,6 +755,8 @@ public class ObjectArrays {
 	 *             that this guarantees that the return value will be &gt;= 0 if
 	 *             and only if the key is found.
 	 * @see java.util.Arrays
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> int binarySearch( final K[] a, final K key ) {
   return binarySearch( a, 0, a.length, key );
@@ -729,6 +781,8 @@ public class ObjectArrays {
 	 *             that this guarantees that the return value will be &gt;= 0 if
 	 *             and only if the key is found.
 	 * @see java.util.Arrays
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> int binarySearch( final K[] a, int from, int to, final K key, final Comparator <K> c ) {
   K midVal;
@@ -761,6 +815,8 @@ public class ObjectArrays {
 	 *             that this guarantees that the return value will be &gt;= 0 if
 	 *             and only if the key is found.
 	 * @see java.util.Arrays
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> int binarySearch( final K[] a, final K key, final Comparator <K> c ) {
   return binarySearch( a, 0, a.length, key, c );
@@ -772,6 +828,8 @@ public class ObjectArrays {
 	 * @param to the index of the last element (exclusive) to be shuffled.
 	 * @param random a pseudorandom number generator (please use a <a href="http://dsiutils.dsi.unimi.it/docs/it/unimi/dsi/util/XorShiftStarRandom.html">XorShift*</a> generator).
 	 * @return <code>a</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] shuffle( final K[] a, final int from, final int to, final Random random ) {
   for( int i = to - from; i-- != 0; ) {
@@ -787,6 +845,8 @@ public class ObjectArrays {
 	 * @param a the array to be shuffled.
 	 * @param random a pseudorandom number generator (please use a <a href="http://dsiutils.dsi.unimi.it/docs/it/unimi/dsi/util/XorShiftStarRandom.html">XorShift*</a> generator).
 	 * @return <code>a</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] shuffle( final K[] a, final Random random ) {
   for( int i = a.length; i-- != 0; ) {
@@ -801,6 +861,8 @@ public class ObjectArrays {
 	 * 
 	 * @param a the array to be reversed.
 	 * @return <code>a</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] reverse( final K[] a ) {
   final int length = a.length;
@@ -817,6 +879,8 @@ public class ObjectArrays {
 	 * @param from the index of the first element (inclusive) to be reversed.
 	 * @param to the index of the last element (exclusive) to be reversed.
 	 * @return <code>a</code>.
+	 *
+	 * @param <K> the type of the array elements.
 	 */
  public static <K> K[] reverse( final K[] a, final int from, final int to ) {
   final int length = to - from;
@@ -827,7 +891,10 @@ public class ObjectArrays {
   }
   return a;
  }
- /** A type-specific content-based hash strategy for arrays. */
+ /** A type-specific content-based hash strategy for arrays.
+ *
+ * @param <K> the type of the array elements.
+ */
  private static final class ArrayHashStrategy <K> implements Hash.Strategy<K[]>, java.io.Serializable {
   private static final long serialVersionUID = -7046029254386353129L;
   public int hashCode( final K[] o ) {

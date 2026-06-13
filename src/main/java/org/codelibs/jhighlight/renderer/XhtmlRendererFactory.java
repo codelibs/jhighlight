@@ -21,16 +21,29 @@ import java.util.Set;
  */
 public abstract class XhtmlRendererFactory
 {
+	/** Creates a new {@link XhtmlRendererFactory}. */
+	protected XhtmlRendererFactory() {}
+	/** Identifier for the GROOVY renderer type. */
 	public final static String GROOVY = "groovy";
+	/** Identifier for the JAVA renderer type. */
 	public final static String JAVA = "java";
+	/** Identifier for the BEANSHELL renderer type. */
 	public final static String BEANSHELL = "beanshell";
+	/** Identifier for the BSH renderer type. */
 	public final static String BSH = "bsh";
+	/** Identifier for the XML renderer type. */
 	public final static String XML = "xml";
+	/** Identifier for the XHTML renderer type. */
 	public final static String XHTML = "xhtml";
+	/** Identifier for the LZX renderer type. */
 	public final static String LZX = "lzx";
+	/** Identifier for the HTML renderer type. */
 	public final static String HTML = "html";
+	/** Identifier for the CPP renderer type. */
 	public final static String CPP = "cpp";
+	/** Identifier for the CXX renderer type. */
 	public final static String CXX = "cxx";
+	/** Identifier for the CPLUSPLUS renderer type. */
 	public final static String CPLUSPLUS = "c++";
 	
 	private final static Map RENDERERS_CLASSNAMES = new HashMap() {{

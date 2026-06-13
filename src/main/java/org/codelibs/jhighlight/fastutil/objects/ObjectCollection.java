@@ -43,6 +43,8 @@ import java.util.Collection;
  * a slightly different semantics for {@link #toArray(Object[])}.
  *
  * @see Collection
+ *
+ * @param <K> the type of the elements maintained by this collection.
  */
 public interface ObjectCollection <K> extends Collection<K>, ObjectIterable <K> {
  /** Returns a type-specific iterator on the elements of this collection.
@@ -58,6 +60,8 @@ public interface ObjectCollection <K> extends Collection<K>, ObjectIterable <K> 
  /** Returns a type-specific iterator on this elements of this collection.
 	 *
 	 * @see #iterator()
+	 *
+	 * @return a type-specific iterator on the elements of this collection.
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #iterator()}.
 	 */
  @Deprecated

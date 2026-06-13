@@ -28,7 +28,8 @@ import org.codelibs.jhighlight.tools.FileUtils;
  * <pre>java org.codelibs.jhighlight.JHighlight [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...</pre>
  * <p>or
  * <pre>java -jar jhighlight.jar [--verbose] [--fragment] [-d destdir] [-e encoding] file|dir ...</pre>
- * <table border="0">
+ * <table>
+ * <caption>Command-line options</caption>
  * <tr>
  * <td><code>--verbose</code></td>
  * <td>Output messages about what the parser is doing.</td>
@@ -55,6 +56,14 @@ import org.codelibs.jhighlight.tools.FileUtils;
  */
 public class JHighlight
 {
+	/** Creates a new {@link JHighlight}. */
+	public JHighlight() {}
+
+	/** Runs the command-line syntax highlighter.
+	 *
+	 * @param arguments the command-line arguments.
+	 * @throws Throwable if an error occurs during highlighting.
+	 */
 	public static void main(String[] arguments) throws Throwable
 	{
 		String      destdir_name = null;

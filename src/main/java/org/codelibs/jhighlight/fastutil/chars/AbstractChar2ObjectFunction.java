@@ -52,9 +52,11 @@ package org.codelibs.jhighlight.fastutil.chars;
  * <P>Implementing subclasses have just to provide type-specific <code>get()</code>,
  * type-specific <code>containsKey()</code>, and <code>size()</code> methods.
  *
+ * @param <V> the type of the values stored in this function.
  */
 public abstract class AbstractChar2ObjectFunction <V> implements Char2ObjectFunction <V>, java.io.Serializable {
  private static final long serialVersionUID = -4940583368468432370L;
+ /** Creates a new abstract function. */
  protected AbstractChar2ObjectFunction() {}
  /**
 	 * The default return value for <code>get()</code>, <code>put()</code> and

@@ -17,11 +17,20 @@ package org.codelibs.jhighlight.tools.exceptions;
  */
 public class FileUtilsErrorException extends Exception
 {
+	/** Creates a new exception with the given message.
+	 *
+	 * @param message the detail message.
+	 */
 	public FileUtilsErrorException(String message)
 	{
 		super(message);
 	}
 	
+	/** Creates a new exception with the given message and cause.
+	 *
+	 * @param message the detail message.
+	 * @param cause the cause of this exception.
+	 */
 	public FileUtilsErrorException(String message, Throwable cause)
 	{
 		super(message, cause);

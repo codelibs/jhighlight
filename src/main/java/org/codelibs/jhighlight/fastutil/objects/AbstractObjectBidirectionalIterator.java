@@ -44,8 +44,11 @@ package org.codelibs.jhighlight.fastutil.objects;
  *
  * <P>This class implements also a trivial version of {@link #back(int)} that
  * uses type-specific methods.
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 public abstract class AbstractObjectBidirectionalIterator <K> extends AbstractObjectIterator <K> implements ObjectBidirectionalIterator <K> {
+ /** Creates a new abstract bidirectional iterator. */
  protected AbstractObjectBidirectionalIterator() {}
  /** This method just iterates the type-specific version of {@link #previous()} for
 	 * at most <code>n</code> times, stopping if {@link

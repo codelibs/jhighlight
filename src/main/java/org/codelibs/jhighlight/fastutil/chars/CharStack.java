@@ -40,19 +40,28 @@ import org.codelibs.jhighlight.fastutil.Stack;
 /** A type-specific {@link Stack}; provides some additional methods that use polymorphism to avoid (un)boxing.
  */
 public interface CharStack extends Stack<Character> {
- /**
+ /** Pushes the given object onto the stack.
+	 *
+	 * @param k the object to push onto the stack.
 	 * @see Stack#push(Object)
 	 */
  void push( char k );
- /**
+ /** Pops the top off the stack.
+	 *
+	 * @return the top of the stack.
 	 * @see Stack#pop()
 	 */
  char popChar();
- /** 
+ /** Peeks at the top of the stack (optional operation).
+	 *
+	 * @return the top of the stack.
 	 * @see Stack#top()
 	 */
  char topChar();
- /** 
+ /** Peeks at an element on the stack (optional operation).
+	 *
+	 * @param i the distance from the top of the stack of the element to peek at; 0 represents the top.
+	 * @return the <code>i</code>-th element on the stack; 0 represents the top.
 	 * @see Stack#peek(int)
 	 */
  char peekChar( int i );
