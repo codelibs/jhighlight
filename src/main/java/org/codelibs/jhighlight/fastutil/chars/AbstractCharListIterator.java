@@ -48,6 +48,7 @@ package org.codelibs.jhighlight.fastutil.chars;
  * @see java.util.ListIterator
  */
 public abstract class AbstractCharListIterator extends AbstractCharBidirectionalIterator implements CharListIterator {
+ /** Creates a new abstract list iterator. */
  protected AbstractCharListIterator() {}
  /** Delegates to the corresponding type-specific method. */
  public void set( Character ok ) { set( ok.charValue() ); }

@@ -33,6 +33,8 @@ import java.util.ListIterator;
  *
  * @see Iterator
  * @see ListIterator
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 
 public interface BidirectionalIterator<K> extends Iterator<K> {

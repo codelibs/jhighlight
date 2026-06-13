@@ -42,8 +42,11 @@ import java.util.Iterator;
  *
  * <P>In particular, this class provide {@link #iterator()}, <code>add()</code>, {@link #remove(Object)} and
  * {@link #contains(Object)} methods that just call the type-specific counterpart. 
+ *
+ * @param <K> the type of the elements maintained by this collection.
  */
 public abstract class AbstractObjectCollection <K> extends AbstractCollection<K> implements ObjectCollection <K> {
+ /** Creates a new abstract collection. */
  protected AbstractObjectCollection() {}
  public Object[] toArray() {
   final Object[] a = new Object[ size() ];

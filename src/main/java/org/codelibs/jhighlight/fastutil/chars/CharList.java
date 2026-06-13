@@ -66,6 +66,8 @@ public interface CharList extends List<Character>, Comparable<List<? extends Cha
 	 *
 	 * @see #listIterator()
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #listIterator()}.
+	 *
+	 * @return a type-specific list iterator on this list.
 	 */
  @Deprecated
  CharListIterator charListIterator();
@@ -73,6 +75,9 @@ public interface CharList extends List<Character>, Comparable<List<? extends Cha
 	 *
 	 * @see #listIterator(int)
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #listIterator(int)}.
+	 *
+	 * @param index the index at which the list iterator will start.
+	 * @return a type-specific list iterator on this list starting at the given index.
 	 */
  @Deprecated
  CharListIterator charListIterator( int index );
@@ -87,6 +92,10 @@ public interface CharList extends List<Character>, Comparable<List<? extends Cha
 	 */
  CharListIterator listIterator( int index );
  /** Returns a type-specific view of the portion of this list from the index <code>from</code>, inclusive, to the index <code>to</code>, exclusive.
+	 *
+	 * @param from the starting index (inclusive).
+	 * @param to the ending index (exclusive).
+	 * @return a type-specific view of the specified portion of this list.
 	 * @see List#subList(int,int)
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #subList(int,int)}.
 	 */
@@ -135,43 +144,76 @@ public interface CharList extends List<Character>, Comparable<List<? extends Cha
 	 * @param length the number of elements to add.
 	 */
  void addElements( int index, char a[], int offset, int length );
- /**
+ /** Appends the specified element to the end of this list.
+	 *
+	 * @param key the element to be appended to this list.
+	 * @return <code>true</code> (as specified by {@link java.util.Collection#add(Object)}).
 	 * @see List#add(Object)
 	 */
  boolean add( char key );
- /**
+ /** Inserts the specified element at the specified position in this list.
+	 *
+	 * @param index the index at which the element is to be inserted.
+	 * @param key the element to be inserted.
 	 * @see List#add(int,Object)
 	 */
  void add( int index, char key );
- /**
+ /** Inserts all elements of the given type-specific collection at the specified position in this list.
+	 *
+	 * @param index the index at which to insert the elements.
+	 * @param c a type-specific collection whose elements will be inserted into this list.
+	 * @return <code>true</code> if this list changed as a result of the call.
 	 * @see List#add(int,Object)
 	 */
  boolean addAll( int index, CharCollection c );
- /**
+ /** Inserts all elements of the given type-specific list at the specified position in this list.
+	 *
+	 * @param index the index at which to insert the elements.
+	 * @param c a type-specific list whose elements will be inserted into this list.
+	 * @return <code>true</code> if this list changed as a result of the call.
 	 * @see List#add(int,Object)
 	 */
  boolean addAll( int index, CharList c );
- /**
+ /** Appends all elements of the given type-specific list to the end of this list.
+	 *
+	 * @param c a type-specific list whose elements will be appended to this list.
+	 * @return <code>true</code> if this list changed as a result of the call.
 	 * @see List#add(int,Object)
 	 */
  boolean addAll( CharList c );
- /**
+ /** Returns the element at the specified position in this list.
+	 *
+	 * @param index the index of the element to return.
+	 * @return the element at the specified position in this list.
 	 * @see List#get(int)
 	 */
  char getChar( int index );
- /**
+ /** Returns the index of the first occurrence of the specified element in this list, or -1 if absent.
+	 *
+	 * @param k the element to search for.
+	 * @return the index of the first occurrence of the element, or -1 if this list does not contain it.
 	 * @see List#indexOf(Object)
 	 */
  int indexOf( char k );
- /**
+ /** Returns the index of the last occurrence of the specified element in this list, or -1 if absent.
+	 *
+	 * @param k the element to search for.
+	 * @return the index of the last occurrence of the element, or -1 if this list does not contain it.
 	 * @see List#lastIndexOf(Object)
 	 */
  int lastIndexOf( char k );
- /**
+ /** Removes the element at the specified position in this list.
+	 *
+	 * @param index the index of the element to remove.
+	 * @return the element previously at the specified position.
 	 * @see List#remove(int)
 	 */
  char removeChar( int index );
- /**
+ /** Replaces the element at the specified position in this list with the specified element.
+	 *
+	 * @param index the index of the element to replace.
+	 * @param k the element to be stored at the specified position.
+	 * @return the element previously at the specified position.
 	 * @see List#set(int,Object)
 	 */
  char set( int index, char k );

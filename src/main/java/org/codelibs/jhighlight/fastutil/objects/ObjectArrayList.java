@@ -66,6 +66,8 @@ import org.codelibs.jhighlight.fastutil.Arrays;
  * expensive loops.
  *
  * @see java.util.ArrayList
+ *
+ * @param <K> the type of the elements maintained by this list.
  */
 public class ObjectArrayList <K> extends AbstractObjectList <K> implements RandomAccess, Cloneable, java.io.Serializable {
  private static final long serialVersionUID = -7046029254386353131L;
@@ -84,6 +86,7 @@ public class ObjectArrayList <K> extends AbstractObjectList <K> implements Rando
 	 * <P>This constructor is only meant to be used by the wrapping methods.
 	 *
 	 * @param a the array that will be used to back this array list.
+	 * @param dummy a dummy parameter used only to disambiguate this constructor from the public one.
 	 */
  @SuppressWarnings("unused")
  protected ObjectArrayList( final K a[], boolean dummy ) {
@@ -183,6 +186,7 @@ public class ObjectArrayList <K> extends AbstractObjectList <K> implements Rando
 	 *
 	 * @param a an array to wrap.
 	 * @param length the length of the resulting array list.
+	 * @param <K> the type of the array elements.
 	 * @return a new array list of the given size, wrapping the given array.
 	 */
  public static <K> ObjectArrayList <K> wrap( final K a[], final int length ) {
@@ -194,6 +198,7 @@ public class ObjectArrayList <K> extends AbstractObjectList <K> implements Rando
  /** Wraps a given array into an array list.
 	 *
 	 * @param a an array to wrap.
+	 * @param <K> the type of the array elements.
 	 * @return a new array list wrapping the given array.
 	 */
  public static <K> ObjectArrayList <K> wrap( final K a[] ) {
@@ -268,6 +273,11 @@ public class ObjectArrayList <K> extends AbstractObjectList <K> implements Rando
   if ( ASSERTS ) assert size <= a.length;
   return old;
  }
+ /** Removes a single instance of the specified element from this list, if it is present.
+  *
+  * @param k the element to be removed.
+  * @return <code>true</code> if this list contained the specified element.
+  */
  public boolean rem( final Object k ) {
   int index = indexOf( k );
   if ( index == -1 ) return false;
@@ -447,10 +457,21 @@ public class ObjectArrayList <K> extends AbstractObjectList <K> implements Rando
   }
   return i < s2 ? -1 : ( i < s1 ? 1 : 0 );
  }
+ /** Serializes this list to the given stream.
+  *
+  * @param s the stream to write to.
+  * @throws java.io.IOException if an I/O error occurs.
+  */
  private void writeObject( java.io.ObjectOutputStream s ) throws java.io.IOException {
   s.defaultWriteObject();
   for( int i = 0; i < size; i++ ) s.writeObject( a[ i ] );
  }
+ /** Deserializes this list from the given stream.
+  *
+  * @param s the stream to read from.
+  * @throws java.io.IOException if an I/O error occurs.
+  * @throws ClassNotFoundException if the class of a serialized object cannot be found.
+  */
  @SuppressWarnings("unchecked")
  private void readObject( java.io.ObjectInputStream s ) throws java.io.IOException, ClassNotFoundException {
   s.defaultReadObject();

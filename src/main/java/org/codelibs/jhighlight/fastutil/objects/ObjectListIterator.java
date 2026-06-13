@@ -45,6 +45,8 @@ import java.util.ListIterator;
  *
  * @see java.util.ListIterator
  * @see org.codelibs.jhighlight.fastutil.BidirectionalIterator
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 public interface ObjectListIterator <K> extends ListIterator<K>, ObjectBidirectionalIterator <K> {
 }

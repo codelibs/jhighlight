@@ -41,6 +41,8 @@ import org.codelibs.jhighlight.tools.StringUtils;
  */
 public abstract class XhtmlRenderer implements Renderer
 {
+	/** Creates a new {@link XhtmlRenderer}. */
+	protected XhtmlRenderer() {}
 	/**
 	 * Transforms source code that's provided through an
 	 * <code>InputStream</code> to highlighted syntax in XHTML and writes it

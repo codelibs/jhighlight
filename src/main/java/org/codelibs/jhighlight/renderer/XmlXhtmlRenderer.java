@@ -24,6 +24,9 @@ import org.codelibs.jhighlight.highlighter.XmlHighlighter;
  */
 public class XmlXhtmlRenderer extends XhtmlRenderer
 {
+	/** Creates a new {@link XmlXhtmlRenderer}. */
+	public XmlXhtmlRenderer() {}
+	/** The default CSS styles used by this renderer. */
 	public final static HashMap DEFAULT_CSS = new HashMap() {{
 			put("h1",
 				"font-family: sans-serif; "+

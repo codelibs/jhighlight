@@ -51,6 +51,8 @@ import org.codelibs.jhighlight.fastutil.objects.ObjectSet;
  * default return value of the originator).
  *
  * @see Map
+ *
+ * @param <V> the type of the values stored in this map.
  */
 public interface Char2ObjectMap <V> extends Char2ObjectFunction <V>, Map<Character,V> {
  /** An entry set providing fast iteration. 
@@ -60,6 +62,8 @@ public interface Char2ObjectMap <V> extends Char2ObjectFunction <V>, Map<Charact
 	 * maps might return {@linkplain #entrySet() entry set} objects of type <code>FastEntrySet</code>: in this case, {@link #fastIterator() fastIterator()}
 	 * will return an iterator that is guaranteed not to create a large number of objects, <em>possibly
 	 * by returning always the same entry</em> (of course, mutated).
+	 *
+	 * @param <V> the type of the values stored in the underlying map.
 	 */
  public interface FastEntrySet <V> extends ObjectSet<Char2ObjectMap.Entry <V> > {
   /** Returns a fast iterator over this entry set; the iterator might return always the same entry object, suitably mutated.
@@ -105,9 +109,13 @@ public interface Char2ObjectMap <V> extends Char2ObjectFunction <V>, Map<Charact
 	 *  that use polymorphism to avoid (un)boxing.
 	 *
 	 * @see java.util.Map.Entry
+	 *
+	 * @param <V> the type of the value stored in this entry.
 	 */
  interface Entry <V> extends Map.Entry <Character,V> {
-  /**
+  /** Returns the key corresponding to this entry as a primitive type.
+		 *
+		 * @return the key corresponding to this entry.
 		 * @see java.util.Map.Entry#getKey()
 		 */
   char getCharKey();

@@ -36,7 +36,7 @@ package org.codelibs.jhighlight.fastutil;
  * The naive handling of removed entries requires that you search for a free entry as if they were occupied. However,
  * <code>fastutil</code> implements two useful optimizations, based on the following invariant:
  * <blockquote>
- * Let <var>i</var><sub>0</sub>, <var>i</var><sub>1</sub>, &hellip, <var>i</var><sub><var>p</var>-1</sub> be
+ * Let <var>i</var><sub>0</sub>, <var>i</var><sub>1</sub>, &hellip;, <var>i</var><sub><var>p</var>-1</sub> be
  * the permutation of the table indices induced by the key <var>k</var>, that is, <var>i</var><sub>0</sub> is the hash
  * of <var>k</var> and the following indices are obtained by adding (modulo <var>p</var>) the secondary hash plus one.
  * If there is a {@link #OCCUPIED} entry with key <var>k</var>, its index in the sequence above comes <em>before</em>
@@ -44,7 +44,7 @@ package org.codelibs.jhighlight.fastutil;
  * </blockquote>
  * 
  * <p>When we search for the key <var>k</var> we scan the entries in the
- * sequence <var>i</var><sub>0</sub>, <var>i</var><sub>1</sub>, &hellip,
+ * sequence <var>i</var><sub>0</sub>, <var>i</var><sub>1</sub>, &hellip;,
  * <var>i</var><sub><var>p</var>-1</sub> and stop when <var>k</var> is found,
  * when we finished the sequence or when we find a {@link #FREE} entry. Note
  * that the correctness of this procedure it is not completely trivial. Indeed,
@@ -74,7 +74,7 @@ public interface Hash {
 
 	/** A generic hash strategy.
 	 *
-	 * <P>Custom hash structures (e.g., {@link
+	 * <P>Custom hash structures (e.g., {@code
 	 * org.codelibs.jhighlight.fastutil.objects.ObjectOpenCustomHashSet}) allow to hash objects
 	 * using arbitrary functions, a typical example being that of {@linkplain
 	 * org.codelibs.jhighlight.fastutil.ints.IntArrays#HASH_STRATEGY arrays}. Of course,
@@ -86,6 +86,8 @@ public interface Hash {
 	 *
 	 * <P>If your custom collection must be able to contain <code>null</code>,
 	 * then your strategy must be able to handle <code>null</code>, too.
+	 *
+	 * @param <K> the type of the objects that this strategy will hash and compare.
 	 */
 
 	public interface Strategy<K> {

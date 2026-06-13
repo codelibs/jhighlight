@@ -43,6 +43,8 @@ package org.codelibs.jhighlight.fastutil.objects;
  * unboxing (and, in the case of <code>fastutil</code> type-specific data structures, a boxing) will be performed. Watch out.
  *
  * @see Iterable
+ *
+ * @param <K> the type of the elements returned by the iterators of this iterable.
  */
 public interface ObjectIterable <K> extends Iterable<K> {
  /** Returns a type-specific iterator.

@@ -47,6 +47,7 @@ package org.codelibs.jhighlight.fastutil.chars;
  * uses type-specific methods.
  */
 public abstract class AbstractCharBidirectionalIterator extends AbstractCharIterator implements CharBidirectionalIterator {
+ /** Creates a new abstract bidirectional iterator. */
  protected AbstractCharBidirectionalIterator() {}
  /** Delegates to the corresponding generic method. */
  public char previousChar() { return previous().charValue(); }

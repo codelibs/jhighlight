@@ -47,9 +47,12 @@ public class Char2ObjectFunctions {
 	 *
 	 * <P>This class may be useful to implement your own in case you subclass
 	 * a type-specific function.
+	 *
+	 * @param <V> the type of the values stored in this function.
 	 */
  public static class EmptyFunction <V> extends AbstractChar2ObjectFunction <V> implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = -7046029254386353129L;
+  /** Creates a new empty function. */
   protected EmptyFunction() {}
   public V get( final char k ) { return (null); }
   public boolean containsKey( final char k ) { return false; }
@@ -58,21 +61,34 @@ public class Char2ObjectFunctions {
   public V get( final Object k ) { return null; }
   public int size() { return 0; }
   public void clear() {}
+  /** Returns the canonical empty function on deserialization.
+   *
+   * @return the canonical empty function.
+   */
   private Object readResolve() { return EMPTY_FUNCTION; }
   public Object clone() { return EMPTY_FUNCTION; }
  }
  /** An empty type-specific function (immutable). It is serializable and cloneable. */
  @SuppressWarnings("rawtypes")
  public static final EmptyFunction EMPTY_FUNCTION = new EmptyFunction();
- /** An immutable class representing a type-specific singleton function.	 
+ /** An immutable class representing a type-specific singleton function.
 	 *
 	 * <P>This class may be useful to implement your own in case you subclass
 	 * a type-specific function.
+	 *
+	 * @param <V> the type of the value stored in this function.
 	 */
  public static class Singleton <V> extends AbstractChar2ObjectFunction <V> implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = -7046029254386353129L;
+  /** The only key contained in this function. */
   protected final char key;
+  /** The only value contained in this function. */
   protected final V value;
+  /** Creates a new singleton function with the given key and value.
+   *
+   * @param key the only key of this function.
+   * @param value the only value of this function.
+   */
   protected Singleton( final char key, final V value ) {
    this.key = key;
    this.value = value;
@@ -88,6 +104,7 @@ public class Char2ObjectFunctions {
 	 *
 	 * @param key the only key of the returned function.
 	 * @param value the only value of the returned function.
+	 * @param <V> the type of the value stored in the returned function.
 	 * @return a type-specific immutable function containing just the pair <code>&lt;key,value></code>.
 	 */
  public static <V> Char2ObjectFunction <V> singleton( final char key, V value ) {
@@ -99,21 +116,36 @@ public class Char2ObjectFunctions {
 	 *
 	 * @param key the only key of the returned function.
 	 * @param value the only value of the returned function.
+	 * @param <V> the type of the value stored in the returned function.
 	 * @return a type-specific immutable function containing just the pair <code>&lt;key,value></code>.
 	 */
  public static <V> Char2ObjectFunction <V> singleton( final Character key, final V value ) {
   return new Singleton <V>( ((key).charValue()), (value) );
  }
- /** A synchronized wrapper class for functions. */
+ /** A synchronized wrapper class for functions.
+	 *
+	 * @param <V> the type of the values stored in this function.
+	 */
  public static class SynchronizedFunction <V> extends AbstractChar2ObjectFunction <V> implements java.io.Serializable {
   private static final long serialVersionUID = -7046029254386353129L;
+  /** The wrapped function. */
   protected final Char2ObjectFunction <V> function;
+  /** The object used for synchronization. */
   protected final Object sync;
+  /** Creates a new synchronized function wrapping the given function and using the given object for synchronization.
+   *
+   * @param f the function to wrap.
+   * @param sync the object to synchronize on.
+   */
   protected SynchronizedFunction( final Char2ObjectFunction <V> f, final Object sync ) {
    if ( f == null ) throw new NullPointerException();
    this.function = f;
    this.sync = sync;
   }
+  /** Creates a new synchronized function wrapping the given function.
+   *
+   * @param f the function to wrap.
+   */
   protected SynchronizedFunction( final Char2ObjectFunction <V> f ) {
    if ( f == null ) throw new NullPointerException();
    this.function = f;
@@ -136,6 +168,7 @@ public class Char2ObjectFunctions {
  /** Returns a synchronized type-specific function backed by the given type-specific function.
 	 *
 	 * @param f the function to be wrapped in a synchronized function.
+	 * @param <V> the type of the values stored in the function.
 	 * @return a synchronized view of the specified function.
 	 * @see java.util.Collections#synchronizedMap(java.util.Map)
 	 */
@@ -144,14 +177,23 @@ public class Char2ObjectFunctions {
 	 *
 	 * @param f the function to be wrapped in a synchronized function.
 	 * @param sync an object that will be used to synchronize the access to the function.
+	 * @param <V> the type of the values stored in the function.
 	 * @return a synchronized view of the specified function.
 	 * @see java.util.Collections#synchronizedMap(java.util.Map)
 	 */
  public static <V> Char2ObjectFunction <V> synchronize( final Char2ObjectFunction <V> f, final Object sync ) { return new SynchronizedFunction <V>( f, sync ); }
- /** An unmodifiable wrapper class for functions. */
+ /** An unmodifiable wrapper class for functions.
+	 *
+	 * @param <V> the type of the values stored in this function.
+	 */
  public static class UnmodifiableFunction <V> extends AbstractChar2ObjectFunction <V> implements java.io.Serializable {
   private static final long serialVersionUID = -7046029254386353129L;
+  /** The wrapped function. */
   protected final Char2ObjectFunction <V> function;
+  /** Creates a new unmodifiable function wrapping the given function.
+   *
+   * @param f the function to wrap.
+   */
   protected UnmodifiableFunction( final Char2ObjectFunction <V> f ) {
    if ( f == null ) throw new NullPointerException();
    this.function = f;
@@ -172,6 +214,7 @@ public class Char2ObjectFunctions {
  /** Returns an unmodifiable type-specific function backed by the given type-specific function.
 	 *
 	 * @param f the function to be wrapped in an unmodifiable function.
+	 * @param <V> the type of the values stored in the function.
 	 * @return an unmodifiable view of the specified function.
 	 * @see java.util.Collections#unmodifiableMap(java.util.Map)
 	 */

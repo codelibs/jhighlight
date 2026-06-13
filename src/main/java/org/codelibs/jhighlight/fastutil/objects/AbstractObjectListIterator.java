@@ -45,8 +45,11 @@ package org.codelibs.jhighlight.fastutil.objects;
  * 
  *
  * @see java.util.ListIterator
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 public abstract class AbstractObjectListIterator <K> extends AbstractObjectBidirectionalIterator <K> implements ObjectListIterator <K> {
+ /** Creates a new abstract list iterator. */
  protected AbstractObjectListIterator() {}
  /** This method just throws an  {@link UnsupportedOperationException}. */
  public void set( K k ) { throw new UnsupportedOperationException(); }

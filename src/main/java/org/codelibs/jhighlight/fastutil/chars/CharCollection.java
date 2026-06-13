@@ -60,6 +60,8 @@ public interface CharCollection extends Collection<Character>, CharIterable {
 	 *
 	 * @see #iterator()
 	 * @deprecated As of <code>fastutil</code> 5, replaced by {@link #iterator()}.
+	 *
+	 * @return a type-specific iterator on the elements of this collection.
 	 */
  @Deprecated
  CharIterator charIterator();
@@ -75,7 +77,10 @@ public interface CharCollection extends Collection<Character>, CharIterable {
 	 * @see Collection#toArray(Object[])
 	 */
  <T> T[] toArray(T[] a);
- /**
+ /** Returns <code>true</code> if this collection contains the specified element.
+	 *
+	 * @param key the element whose presence is to be tested.
+	 * @return <code>true</code> if this collection contains the specified element.
 	 * @see Collection#contains(Object)
 	 */
  boolean contains( char key );
@@ -106,7 +111,10 @@ public interface CharCollection extends Collection<Character>, CharIterable {
 	 * @see Collection#toArray(Object[])
 	 */
  char[] toArray( char a[] );
- /**
+ /** Ensures that this collection contains the specified element.
+	 *
+	 * @param key the element whose presence is to be ensured.
+	 * @return <code>true</code> if this collection changed as a result of the call.
 	 * @see Collection#add(Object)
 	 */
  boolean add( char key );
@@ -115,22 +123,37 @@ public interface CharCollection extends Collection<Character>, CharIterable {
 	 * forces us to use a distinguished name. For simplicity, the set interfaces reinstates
 	 * <code>remove()</code>.
 	 *
+	 *
+	 * @param key the element to be removed.
+	 * @return <code>true</code> if this collection changed as a result of the call.
 	 * @see Collection#remove(Object)
 	 */
  boolean rem( char key );
- /**
+ /** Adds all elements of the given type-specific collection to this collection.
+	 *
+	 * @param c a type-specific collection whose elements will be added to this collection.
+	 * @return <code>true</code> if this collection changed as a result of the call.
 	 * @see Collection#addAll(Collection)
 	 */
  boolean addAll( CharCollection c );
- /**
+ /** Checks whether this collection contains all elements of the given type-specific collection.
+	 *
+	 * @param c a type-specific collection whose elements will be checked for containment.
+	 * @return <code>true</code> if this collection contains all elements of the given collection.
 	 * @see Collection#containsAll(Collection)
 	 */
  boolean containsAll( CharCollection c );
- /**
+ /** Removes from this collection all elements contained in the given type-specific collection.
+	 *
+	 * @param c a type-specific collection whose elements will be removed from this collection.
+	 * @return <code>true</code> if this collection changed as a result of the call.
 	 * @see Collection#removeAll(Collection)
 	 */
  boolean removeAll( CharCollection c );
- /**
+ /** Retains in this collection only elements contained in the given type-specific collection.
+	 *
+	 * @param c a type-specific collection whose elements will be retained in this collection.
+	 * @return <code>true</code> if this collection changed as a result of the call.
 	 * @see Collection#retainAll(Collection)
 	 */
  boolean retainAll( CharCollection c );

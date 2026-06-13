@@ -60,6 +60,9 @@ import org.codelibs.jhighlight.tools.FileUtils;
  */
 public final class HighlightFilter implements Filter
 {
+	/** Creates a new {@link HighlightFilter}. */
+	public HighlightFilter() {}
+
 	public void init(FilterConfig filterConfig)
 	{
 	}

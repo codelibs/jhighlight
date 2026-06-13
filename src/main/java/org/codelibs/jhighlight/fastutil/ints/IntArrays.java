@@ -61,7 +61,7 @@ import org.codelibs.jhighlight.fastutil.Hash;
  * arrays much like array lists. This can be very useful when efficiency (or
  * syntactic simplicity) reasons make array lists unsuitable.
  *
- * <P>Note that {@link org.codelibs.jhighlight.fastutil.io.BinIO} and {@link org.codelibs.jhighlight.fastutil.io.TextIO}
+ * <P>Note that {@code org.codelibs.jhighlight.fastutil.io.BinIO} and {@code org.codelibs.jhighlight.fastutil.io.TextIO}
  * contain several methods make it possible to load and save arrays of primitive types as sequences
  * of elements in {@link java.io.DataInput} format (i.e., not as objects) or as sequences of lines of text.
  *
@@ -876,7 +876,7 @@ public class IntArrays {
 	 *
 	 * <p>This method implement an <em>indirect</em> sort. The elements of <code>perm</code> (which must
 	 * be exactly the numbers in the interval <code>[0..perm.length)</code>) will be permuted so that
-	 * <code>a[ perm[ i ] ] <= a[ perm[ i + 1 ] ]</code>.
+	 * <code>a[ perm[ i ] ] &lt;= a[ perm[ i + 1 ] ]</code>.
 	 *
 	 * <p>This implementation is significantly faster than quicksort (unstable) or mergesort (stable)
 	 * already at small sizes (say, more than 10000 elements), but it can only
@@ -903,7 +903,7 @@ public class IntArrays {
 	 *
 	 * <p>This method implement an <em>indirect</em> sort. The elements of <code>perm</code> (which must
 	 * be exactly the numbers in the interval <code>[0..perm.length)</code>) will be permuted so that
-	 * <code>a[ perm[ i ] ] <= a[ perm[ i + 1 ] ]</code>.
+	 * <code>a[ perm[ i ] ] &lt;= a[ perm[ i + 1 ] ]</code>.
 	 *
 	 * <p>This implementation is significantly faster than quicksort (unstable) or mergesort (stable)
 	 * already at small sizes (say, more than 10000 elements), but it can only
@@ -1012,7 +1012,7 @@ public class IntArrays {
 	 *
 	 * <p>This method implements a <em>lexicographical</em> sorting of the arguments. Pairs of elements
 	 * in the same position in the two provided arrays will be considered a single key, and permuted
-	 * accordingly. In the end, either <code>a[ i ] < a[ i + 1 ]</code> or <code>a[ i ] == a[ i + 1 ]</code> and <code>b[ i ] <= b[ i + 1 ]</code>.
+	 * accordingly. In the end, either <code>a[ i ] &lt; a[ i + 1 ]</code> or <code>a[ i ] == a[ i + 1 ]</code> and <code>b[ i ] &lt;= b[ i + 1 ]</code>.
 	 *
 	 * <p>This implementation is significantly faster than quicksort 
 	 * already at small sizes (say, more than 10000 elements), but it can only
@@ -1035,7 +1035,7 @@ public class IntArrays {
 	 *
 	 * <p>This method implements a <em>lexicographical</em> sorting of the arguments. Pairs of elements
 	 * in the same position in the two provided arrays will be considered a single key, and permuted
-	 * accordingly. In the end, either <code>a[ i ] < a[ i + 1 ]</code> or <code>a[ i ] == a[ i + 1 ]</code> and <code>b[ i ] <= b[ i + 1 ]</code>.
+	 * accordingly. In the end, either <code>a[ i ] &lt; a[ i + 1 ]</code> or <code>a[ i ] == a[ i + 1 ]</code> and <code>b[ i ] &lt;= b[ i + 1 ]</code>.
 	 *
 	 * <p>This implementation is significantly faster than quicksort 
 	 * already at small sizes (say, more than 10000 elements), but it can only
@@ -1139,7 +1139,7 @@ public class IntArrays {
 	 *
 	 * <p>This method implement an <em>indirect</em> sort. The elements of <code>perm</code> (which must
 	 * be exactly the numbers in the interval <code>[0..perm.length)</code>) will be permuted so that
-	 * <code>a[ perm[ i ] ] <= a[ perm[ i + 1 ] ]</code>.
+	 * <code>a[ perm[ i ] ] &lt;= a[ perm[ i + 1 ] ]</code>.
 	 *
 	 * <p>This implementation is significantly faster than quicksort (unstable) or mergesort (stable)
 	 * already at small sizes (say, more than 10000 elements), but it can only
@@ -1167,7 +1167,7 @@ public class IntArrays {
 	 *
 	 * <p>This method implement an <em>indirect</em> sort. The elements of <code>perm</code> (which must
 	 * be exactly the numbers in the interval <code>[0..perm.length)</code>) will be permuted so that
-	 * <code>a[ perm[ i ] ] <= a[ perm[ i + 1 ] ]</code>.
+	 * <code>a[ perm[ i ] ] &lt;= a[ perm[ i + 1 ] ]</code>.
 	 *
 	 * <p>This implementation is significantly faster than quicksort (unstable) or mergesort (stable)
 	 * already at small sizes (say, more than 10000 elements), but it can only

@@ -23,6 +23,9 @@ import org.codelibs.jhighlight.highlighter.ExplicitStateHighlighter;
  */
 public class CppXhtmlRenderer extends XhtmlRenderer
 {
+	/** Creates a new {@link CppXhtmlRenderer}. */
+	public CppXhtmlRenderer() {}
+	/** The default CSS styles used by this renderer. */
 	public final static HashMap DEFAULT_CSS = new HashMap() {{
 			put("h1",
 				"font-family: sans-serif; " +

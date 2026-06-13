@@ -24,6 +24,9 @@ import org.codelibs.jhighlight.highlighter.JavaScriptHighlighter;
  */
 public class JavaScriptXhtmlRenderer extends XhtmlRenderer
 {
+	/** Creates a new {@link JavaScriptXhtmlRenderer}. */
+	public JavaScriptXhtmlRenderer() {}
+	/** The default CSS styles used by this renderer. */
 	public final static HashMap DEFAULT_CSS = new HashMap() {{
 			put("h1",
 				"font-family: sans-serif; " +

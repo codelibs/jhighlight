@@ -77,6 +77,7 @@ public class CharArrayList extends AbstractCharList implements RandomAccess, Clo
 	 * <P>This constructor is only meant to be used by the wrapping methods.
 	 *
 	 * @param a the array that will be used to back this array list.
+	 * @param dummy a dummy parameter used only to disambiguate this constructor from the public one.
 	 */
  @SuppressWarnings("unused")
  protected CharArrayList( final char a[], boolean dummy ) {
@@ -431,10 +432,21 @@ public class CharArrayList extends AbstractCharList implements RandomAccess, Clo
   }
   return i < s2 ? -1 : ( i < s1 ? 1 : 0 );
  }
+ /** Serializes this list to the given stream.
+  *
+  * @param s the stream to write to.
+  * @throws java.io.IOException if an I/O error occurs.
+  */
  private void writeObject( java.io.ObjectOutputStream s ) throws java.io.IOException {
   s.defaultWriteObject();
   for( int i = 0; i < size; i++ ) s.writeChar( a[ i ] );
  }
+ /** Deserializes this list from the given stream.
+  *
+  * @param s the stream to read from.
+  * @throws java.io.IOException if an I/O error occurs.
+  * @throws ClassNotFoundException if the class of a serialized object cannot be found.
+  */
  @SuppressWarnings("unchecked")
  private void readObject( java.io.ObjectInputStream s ) throws java.io.IOException, ClassNotFoundException {
   s.defaultReadObject();

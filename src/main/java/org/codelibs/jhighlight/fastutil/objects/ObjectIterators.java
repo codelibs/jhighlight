@@ -48,9 +48,12 @@ public class ObjectIterators {
 	 *
 	 * <P>This class may be useful to implement your own in case you subclass
 	 * a type-specific iterator.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static class EmptyIterator <K> extends AbstractObjectListIterator <K> implements java.io.Serializable, Cloneable {
   private static final long serialVersionUID = -7046029254386353129L;
+  /** Creates a new empty iterator. */
   protected EmptyIterator() {}
   public boolean hasNext() { return false; }
   public boolean hasPrevious() { return false; }
@@ -61,6 +64,10 @@ public class ObjectIterators {
   public int skip( int n ) { return 0; };
   public int back( int n ) { return 0; };
   public Object clone() { return EMPTY_ITERATOR; }
+        /** Returns the canonical empty iterator on deserialization.
+         *
+         * @return the canonical empty iterator.
+         */
         private Object readResolve() { return EMPTY_ITERATOR; }
  }
  /** An empty iterator (immutable). It is serializable and cloneable.
@@ -100,6 +107,8 @@ public class ObjectIterators {
 	 *
 	 * @param element the only element to be returned by a type-specific list iterator.
 	 * @return  an iterator that iterates just over <code>element</code>.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectListIterator <K> singleton( final K element ) {
   return new SingletonIterator <K>( element );
@@ -158,6 +167,9 @@ public class ObjectIterators {
 	 * @param array an array to wrap into a type-specific list iterator.
 	 * @param offset the first element of the array to be returned.
 	 * @param length the number of elements to return.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
+	 * @return a type-specific list iterator wrapping the given array.
 	 */
  public static <K> ObjectListIterator <K> wrap( final K[] array, final int offset, final int length ) {
   ObjectArrays.ensureOffsetLength( array, offset, length );
@@ -169,6 +181,9 @@ public class ObjectIterators {
 	 * all elements of the given array.
 	 *
 	 * @param array an array to wrap into a type-specific list iterator.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
+	 * @return a type-specific list iterator wrapping the given array.
 	 */
  public static <K> ObjectListIterator <K> wrap( final K[] array ) {
   return new ArrayIterator <K>( array, 0, array.length );
@@ -185,6 +200,8 @@ public class ObjectIterators {
 	 * @param offset the first element of the array to be returned.
 	 * @param max the maximum number of elements to unwrap.
 	 * @return the number of elements unwrapped.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> int unwrap( final Iterator <? extends K> i, final K array[], int offset, final int max ) {
   if ( max < 0 ) throw new IllegalArgumentException( "The maximum number of elements (" + max + ") is negative" );
@@ -202,6 +219,8 @@ public class ObjectIterators {
 	 * @param i a type-specific iterator.
 	 * @param array an array to contain the output of the iterator.
 	 * @return the number of elements unwrapped.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> int unwrap( final Iterator <? extends K> i, final K array[] ) {
   return unwrap( i, array, 0, array.length );
@@ -214,7 +233,9 @@ public class ObjectIterators {
 	 *
 	 * @param i a type-specific iterator.
 	 * @param max the maximum number of elements to be unwrapped.
-	 * @return an array containing the elements returned by the iterator (at most <ocde>max</code>).
+	 * @return an array containing the elements returned by the iterator (at most <code>max</code>).
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  @SuppressWarnings("unchecked")
  public static <K> K[] unwrap( final Iterator <? extends K> i, int max ) {
@@ -234,6 +255,8 @@ public class ObjectIterators {
 	 *
 	 * @param i a type-specific iterator.
 	 * @return an array containing the elements returned by the iterator.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> K[] unwrap( final Iterator <? extends K> i ) {
   return unwrap( i, Integer.MAX_VALUE );
@@ -251,6 +274,8 @@ public class ObjectIterators {
 	 * @return the number of elements unwrapped. Note that
 	 * this is the number of elements returned by the iterator, which is not necessarily the number
 	 * of elements that have been added to the collection (because of duplicates).
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> int unwrap( final Iterator <K> i, final ObjectCollection <? super K> c, final int max ) {
   if ( max < 0 ) throw new IllegalArgumentException( "The maximum number of elements (" + max + ") is negative" );
@@ -269,6 +294,8 @@ public class ObjectIterators {
 	 * @return the number of elements unwrapped. Note that
 	 * this is the number of elements returned by the iterator, which is not necessarily the number
 	 * of elements that have been added to the collection (because of duplicates).
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> long unwrap( final Iterator <K> i, final ObjectCollection <? super K> c ) {
   long n = 0;
@@ -289,6 +316,8 @@ public class ObjectIterators {
 	 * @return the number of elements poured. Note that
 	 * this is the number of elements returned by the iterator, which is not necessarily the number
 	 * of elements that have been added to the collection (because of duplicates).
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> int pour( final Iterator <K> i, final ObjectCollection <? super K> s, final int max ) {
   if ( max < 0 ) throw new IllegalArgumentException( "The maximum number of elements (" + max + ") is negative" );
@@ -306,6 +335,8 @@ public class ObjectIterators {
 	 * @return the number of elements poured. Note that
 	 * this is the number of elements returned by the iterator, which is not necessarily the number
 	 * of elements that have been added to the collection (because of duplicates).
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> int pour( final Iterator <K> i, final ObjectCollection <? super K> s ) {
   return pour( i, s, Integer.MAX_VALUE );
@@ -321,6 +352,8 @@ public class ObjectIterators {
 	 * @param i a type-specific iterator.
 	 * @param max the maximum number of elements to be poured.
 	 * @return a type-specific list containing the returned elements, up to <code>max</code>.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectList <K> pour( final Iterator <K> i, int max ) {
   final ObjectArrayList <K> l = new ObjectArrayList <K>();
@@ -337,6 +370,8 @@ public class ObjectIterators {
 	 *
 	 * @param i a type-specific iterator.
 	 * @return a type-specific list containing the returned elements.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectList <K> pour( final Iterator <K> i ) {
   return pour( i, Integer.MAX_VALUE );
@@ -363,6 +398,8 @@ public class ObjectIterators {
 	 *
 	 * @param i an iterator.
 	 * @return a type-specific iterator  backed by <code>i</code>.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  @SuppressWarnings({ "rawtypes", "unchecked" })
   public static <K> ObjectIterator <K> asObjectIterator( final Iterator <K> i ) {
@@ -400,6 +437,8 @@ public class ObjectIterators {
 	 *
 	 * @param i a list iterator.
 	 * @return a type-specific list iterator backed by <code>i</code>.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  @SuppressWarnings({ "rawtypes", "unchecked" })
   public static <K> ObjectListIterator <K> asObjectIterator( final ListIterator <K> i ) {
@@ -455,6 +494,8 @@ public class ObjectIterators {
 	 *
 	 * @param a an array of iterators.
 	 * @return an iterator obtained by concatenation.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectIterator <K> concat( final ObjectIterator <? extends K> a[] ) {
   return concat( a, 0, a.length );
@@ -470,13 +511,23 @@ public class ObjectIterators {
 	 * @param offset the index of the first iterator to concatenate.
 	 * @param length the number of iterators to concatenate.
 	 * @return an iterator obtained by concatenation of <code>length</code> elements of <code>a</code> starting at <code>offset</code>.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectIterator <K> concat( final ObjectIterator <? extends K> a[], final int offset, final int length ) {
   return new IteratorConcatenator <K>( a, offset, length );
  }
-   /** An unmodifiable wrapper class for iterators. */
+   /** An unmodifiable wrapper class for iterators.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
+	 */
  public static class UnmodifiableIterator <K> extends AbstractObjectIterator <K> {
+  /** The wrapped iterator. */
   final protected ObjectIterator <K> i;
+  /** Creates a new unmodifiable iterator wrapping the given iterator.
+   *
+   * @param i the iterator to wrap.
+   */
   @SuppressWarnings("unchecked")
   public UnmodifiableIterator( final ObjectIterator <K> i ) {
    this.i = i;
@@ -488,11 +539,21 @@ public class ObjectIterators {
 	 *
 	 * @param i the iterator to be wrapped in an unmodifiable iterator.
 	 * @return an unmodifiable view of the specified iterator.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectIterator <K> unmodifiable( final ObjectIterator <K> i ) { return new UnmodifiableIterator <K>( i ); }
-   /** An unmodifiable wrapper class for bidirectional iterators. */
+   /** An unmodifiable wrapper class for bidirectional iterators.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
+	 */
  public static class UnmodifiableBidirectionalIterator <K> extends AbstractObjectBidirectionalIterator <K> {
+  /** The wrapped bidirectional iterator. */
   final protected ObjectBidirectionalIterator <K> i;
+  /** Creates a new unmodifiable bidirectional iterator wrapping the given iterator.
+   *
+   * @param i the iterator to wrap.
+   */
   @SuppressWarnings("unchecked")
   public UnmodifiableBidirectionalIterator( final ObjectBidirectionalIterator <K> i ) {
    this.i = i;
@@ -506,11 +567,21 @@ public class ObjectIterators {
 	 *
 	 * @param i the bidirectional iterator to be wrapped in an unmodifiable bidirectional iterator.
 	 * @return an unmodifiable view of the specified bidirectional iterator.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectBidirectionalIterator <K> unmodifiable( final ObjectBidirectionalIterator <K> i ) { return new UnmodifiableBidirectionalIterator <K>( i ); }
-   /** An unmodifiable wrapper class for list iterators. */
+   /** An unmodifiable wrapper class for list iterators.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
+	 */
  public static class UnmodifiableListIterator <K> extends AbstractObjectListIterator <K> {
+  /** The wrapped list iterator. */
   final protected ObjectListIterator <K> i;
+  /** Creates a new unmodifiable list iterator wrapping the given iterator.
+   *
+   * @param i the iterator to wrap.
+   */
   @SuppressWarnings("unchecked")
   public UnmodifiableListIterator( final ObjectListIterator <K> i ) {
    this.i = i;
@@ -526,6 +597,8 @@ public class ObjectIterators {
 	 *
 	 * @param i the list iterator to be wrapped in an unmodifiable list iterator.
 	 * @return an unmodifiable view of the specified list iterator.
+	 *
+	 * @param <K> the type of the elements returned by this iterator.
 	 */
  public static <K> ObjectListIterator <K> unmodifiable( final ObjectListIterator <K> i ) { return new UnmodifiableListIterator <K>( i ); }
 }

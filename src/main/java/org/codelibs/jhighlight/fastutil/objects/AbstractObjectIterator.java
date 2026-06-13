@@ -46,8 +46,11 @@ package org.codelibs.jhighlight.fastutil.objects;
  * UnsupportedOperationException}.
  *
  * @see java.util.Iterator
+ *
+ * @param <K> the type of the elements returned by this iterator.
  */
 public abstract class AbstractObjectIterator <K> implements ObjectIterator <K> {
+ /** Creates a new abstract iterator. */
  protected AbstractObjectIterator() {}
  /** This method just throws an  {@link UnsupportedOperationException}. */
  public void remove() { throw new UnsupportedOperationException(); }

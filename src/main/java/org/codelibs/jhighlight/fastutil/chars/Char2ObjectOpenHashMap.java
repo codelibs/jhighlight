@@ -64,6 +64,8 @@ import org.codelibs.jhighlight.fastutil.objects.ObjectIterator;
  *
  * @see Hash
  * @see HashCommon
+ *
+ * @param <V> the type of the values stored in this map.
  */
 public class Char2ObjectOpenHashMap <V> extends AbstractChar2ObjectMap <V> implements java.io.Serializable, Cloneable, Hash {
     private static final long serialVersionUID = 0L;
@@ -276,6 +278,11 @@ public class Char2ObjectOpenHashMap <V> extends AbstractChar2ObjectMap <V> imple
   }
   return (this.defRetValue);
  }
+ /** Returns the value to which the given key is mapped.
+  *
+  * @param ok the key.
+  * @return the value to which the given key is mapped, or <code>null</code> if no value was present for the given key.
+  */
  public V get( final Character ok ) {
   final char k = ((ok).charValue());
   // The starting point.
@@ -758,6 +765,11 @@ public class Char2ObjectOpenHashMap <V> extends AbstractChar2ObjectMap <V> imple
   }
   return h;
  }
+ /** Serializes this map to the given stream.
+  *
+  * @param s the stream to write to.
+  * @throws java.io.IOException if an I/O error occurs.
+  */
  private void writeObject(java.io.ObjectOutputStream s) throws java.io.IOException {
   final char key[] = this.key;
   final V value[] = this.value;
@@ -769,6 +781,12 @@ public class Char2ObjectOpenHashMap <V> extends AbstractChar2ObjectMap <V> imple
    s.writeObject( value[ e ] );
   }
  }
+ /** Deserializes this map from the given stream.
+  *
+  * @param s the stream to read from.
+  * @throws java.io.IOException if an I/O error occurs.
+  * @throws ClassNotFoundException if the class of a serialized object cannot be found.
+  */
  @SuppressWarnings("unchecked")
  private void readObject(java.io.ObjectInputStream s) throws java.io.IOException, ClassNotFoundException {
   s.defaultReadObject();

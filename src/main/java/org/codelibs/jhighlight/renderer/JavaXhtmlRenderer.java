@@ -22,6 +22,9 @@ import org.codelibs.jhighlight.highlighter.JavaHighlighter;
  */
 public class JavaXhtmlRenderer extends XhtmlRenderer
 {
+	/** Creates a new {@link JavaXhtmlRenderer}. */
+	public JavaXhtmlRenderer() {}
+	/** The default CSS styles used by this renderer. */
 	public final static HashMap DEFAULT_CSS = new HashMap() {{
 			put("h1",
 				"font-family: sans-serif; " +
