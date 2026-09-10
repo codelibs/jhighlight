@@ -7,10 +7,15 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [master]
+    branches:
+    - main
+    - "*.x"
+  # No branch filter: `pull_request.branches` matches the BASE branch, so restricting it to
+  # main/*.x means a stacked pull request - one whose base is the previous branch in the
+  # stack - gets no CI at all. `push` keeps its filter so feature-branch pushes do not
+  # double-build.
   pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [master]
+  workflow_dispatch:
   schedule:
     - cron: '0 8 * * 3'
 
