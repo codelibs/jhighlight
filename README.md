@@ -25,14 +25,14 @@ A pure Java syntax highlighting library that generates XHTML output from source 
 <dependency>
     <groupId>org.codelibs</groupId>
     <artifactId>jhighlight</artifactId>
-    <version>1.1.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
 ### Gradle
 
 ```gradle
-implementation 'org.codelibs:jhighlight:1.1.0'
+implementation 'org.codelibs:jhighlight:2.0.0'
 ```
 
 ## Quick Start
@@ -127,7 +127,7 @@ If you're using Apache Tika (which depends on the original jhighlight), you'll n
 <dependency>
     <groupId>org.codelibs</groupId>
     <artifactId>jhighlight</artifactId>
-    <version>1.1.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 
